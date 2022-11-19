@@ -12,16 +12,16 @@ function Nav() {
                     <img src="icon.png" alt="anh icon" className="w-14 h-14 object-cover cursor-pointer"></img>
                 </div>
                 <div className="p-4 m-2 text-2xl cursor-pointer text-gray-300  " >
-                <BsHouse />
+                    <BsHouse />
                 </div>
                 <div className="p-4 m-2 text-2xl cursor-pointer text-gray-300  " >
-                <AiOutlineTeam />
+                    <AiOutlineTeam />
                 </div>
                 <div className="p-4 m-2 text-2xl cursor-pointer text-gray-300  " >
-                <AiOutlineFolderOpen />
+                    <AiOutlineFolderOpen />
                 </div>
                 <div className="p-4 m-2 text-2xl cursor-pointer text-gray-300  " >
-                <AiOutlineFile />
+                    <AiOutlineFile />
                 </div>
             </nav>
         </>
