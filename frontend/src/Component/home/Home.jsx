@@ -17,9 +17,11 @@ function Home() {
     }
     return (
         <>
-            <div className=' bg-neutral-50 bg-opacity-60 w-full h-screen flex justify-center items-center' >
-                trang home sau khi da login <br/>
-                <button onClick={handleLogOut}>Log out</button>
+            <div className=' bg-gray-900 text-white bg-opacity-60 w-full h-screen relative' >
+                <Nav>
+
+                </Nav>
+                <button onClick={handleLogOut} className="absolute top-0 right-0">Log out</button>
             </div>
         </>
     );

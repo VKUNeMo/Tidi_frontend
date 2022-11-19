@@ -25,12 +25,21 @@ function Login() {
 
     function handleLogin(e) {
         e.preventDefault();
-        msg = "";
-        const data = {
-            username: username,
-            password: password
-        };
-        loginUser(data, dispatch, navigate);
+        let data = {
+            username: userName,
+            password
+        }
+        console.log(data);
+        // axios.post(`${BASE_URL}/v1/auth/login`, data)
+        //     .then(function (res) {
+        //         localStorage.setItem('token',res.data.token.accessToken);
+        //         localStorage.setItem('userID', res.data.user._id);    
+
+        //         navigate("/home");        
+        //     })
+        //     .catch(function (rej) {
+        //         console.log(rej);
+        //     })
     }
 
     return (
@@ -43,7 +52,7 @@ function Login() {
             <div className='h-full w-2/5 absolute flex flex-col justify-center items-center '>
                 <div className='py-4 text-center w-full'>
                     <h2 className=' text-5xl font-bold tracking-wider mb-1 '>Welcome!</h2>
-                    <p className='font-normal text-gray-800'> Wish you have a nice time</p>
+                    <p className='font-normal text-gray-400'> Wish you have a nice time</p>
                 </div>
                 <form className='flex flex-col w-4/5' id='form-login' onSubmit={handleLogin}>
                     <span className='err text-red-700'>{msg}</span>
@@ -74,12 +83,21 @@ function Login() {
                         className=' mt-1 w-full bg-emerald-900 bg-opacity-85 text-yellow-50  rounded-md py-3 shadow-lg hover:shadow '>Login
                     </button>
                 </form>
-                <div className='mt-4 w-full text-center'>
+                <div className='mb-4 mt-2 w-full text-center'>
                     <p className='inline-block'>Don't have an account?</p>
                     <Link to='/register' className='italic underline '>Register</Link>
                 </div>
+                <div className='text-center w-full mt-4'>
+                    <p>Or</p>
+                    <p className='bg-inherit border w-full text-gray-400 py-2 pr-10 pl-3 mt-1 mb-4 cursor-pointer rounded-xl'>
+                        Connect with Google
+                    </p>
+                    <p className='bg-inherit border w-full text-gray-400 py-2 pr-10 pl-3 my-4 cursor-pointer rounded-xl'>
+                        Connect with Facebook
+                    </p>
+                </div>
             </div>
-        </div>
+        </>
     )
 }
 
