@@ -1,9 +1,9 @@
 import React from "react";
 import { BsHouse } from "react-icons/bs";
-import {AiOutlineTeam, AiOutlineFolderOpen, AiOutlineFile, AiOutlineLogout} from "react-icons/ai"
-import {logoutUser} from "../../Redux/APIRequest/apiAuthRequest";
-import {useDispatch, useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
+import { AiOutlineTeam, AiOutlineFolderOpen, AiOutlineFile, AiOutlineLogout } from "react-icons/ai"
+import { logoutUser } from "../../Redux/APIRequest/apiAuthRequest";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 
 function Nav() {
@@ -20,7 +20,7 @@ function Nav() {
             <nav className="h-full flex items-center fixed flex-col border-r border-r-slate-300 justify-between">
                 <div className="w-auto">
                     <div>
-                        <img src="icon.png" alt="anh icon" className="w-14 h-14 object-cover cursor-pointer"/>
+                        <img src="icon.png" alt="anh icon" className="w-14 h-14 object-cover cursor-pointer" />
                     </div>
                     <div className="p-4 text-2xl cursor-pointer rounded text-gray-300 hover:bg-gray-400 " >
                         <BsHouse />
@@ -36,7 +36,7 @@ function Nav() {
                     </div>
                 </div>
                 <div className="p-4 text-2xl cursor-pointer rounded text-gray-300 text-red-700 hover:bg-gray-400" onClick={handleLogOut}>
-                    <AiOutlineLogout alt="Đăng xuất"/>
+                    <AiOutlineLogout alt="Đăng xuất" />
                 </div>
             </nav>
         </>
