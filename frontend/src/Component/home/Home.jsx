@@ -9,11 +9,12 @@ import {useNavigate} from "react-router-dom";
 
 
 function Home() {
-    const dataUser = useSelector(state => state.auth.login.currentUser?.data);
+    const dataUser = useSelector(state => state.auth.login.currentUser);
+    const token = useSelector(state => state.auth.login.token?.accessToken);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    function handleLogOut() { 
-        logoutUser(dispatch, navigate, dataUser.token.accessToken);
+    function handleLogOut() {
+        logoutUser(dispatch, navigate, token);
     }
     return (
         <>

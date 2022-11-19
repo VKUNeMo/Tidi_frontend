@@ -26,7 +26,7 @@ export const loginUser = async (user, dispatch, navigate) => {
     dispatch(loginStart());
     try {
         const data = await instance.post("v1/auth/login", user);
-        dispatch(loginSuccess(data));
+        dispatch(loginSuccess(data.data));
         navigate("/home");
     }catch (err){
         const msg = err.response?.data.message ?? "";
