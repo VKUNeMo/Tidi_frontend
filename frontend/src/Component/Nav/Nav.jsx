@@ -17,7 +17,7 @@ function Nav() {
 
     return (
         <>
-            <nav className="h-full flex items-center fixed flex-col border-r border-r-slate-300 justify-between">
+            <nav className="h-full flex items-center fixed flex-col border-r border-r-slate-300 justify-between z-50">
                 <div className="w-auto">
                     <div>
                         <img src="icon.png" alt="anh icon" className="w-14 h-14 object-cover cursor-pointer" />
@@ -35,8 +35,8 @@ function Nav() {
                         <AiOutlineFile />
                     </div>
                 </div>
-                <div className="p-4 text-2xl cursor-pointer rounded text-gray-300 text-red-700 hover:bg-gray-400" onClick={handleLogOut}>
-                    <AiOutlineLogout alt="Đăng xuất" />
+                <div className="p-4 text-2xl cursor-pointer rounded text-red-700 hover:bg-gray-400" onClick={handleLogOut}>
+                    <AiOutlineLogout />
                 </div>
             </nav>
         </>
