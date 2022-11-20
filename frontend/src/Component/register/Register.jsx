@@ -89,14 +89,9 @@ function Register() {
                     </form>
                     <div className='my-3 h-auto w-full text-center'>
                         <p className='inline-block mr-1'>Already have an account? </p>
-                        <Link to='/' className='italic underline '>Sign In</Link>
+                        <Link to='/login' className='italic underline '>Sign In</Link>
                     </div>
                 </div>
-                {/*<div className='h-full right-0 w-3/5 min-w-max'>*/}
-                {/*    <img className='rounded-l-lg h-full w-full object-cover min-h-0' alt='imageLogin'*/}
-                {/*         src="https://cdn.dribbble.com/users/6228692/screenshots/18531198/media/216f9f699749626e87eed99cdf3bdb59.png?compress=1&resize=768x576&vertical=top">*/}
-                {/*    </img>*/}
-                {/*</div>*/}
             </div>
         </>
     )

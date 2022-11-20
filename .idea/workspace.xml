@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="de66a0fc-3180-4798-ac35-9bd3a6cba3e8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.js" afterDir="false" />
+    <list default="true" id="caf7ad57-4f0e-446a-9aad-2fa3fcf00677" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/frontend/src/Component/Nav/Nav.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Component/Nav/Nav.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/Component/home/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Component/home/Home.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/Component/login/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Component/login/Login.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Component/register/Register.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Component/register/Register.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

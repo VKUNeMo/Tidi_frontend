@@ -35,8 +35,8 @@ function Nav() {
                         <AiOutlineFile />
                     </div>
                 </div>
-                <div className="p-4 text-2xl cursor-pointer rounded text-gray-300 text-red-700 hover:bg-gray-400" onClick={handleLogOut}>
-                    <AiOutlineLogout alt="Đăng xuất" />
+                <div className="p-4 text-2xl cursor-pointer rounded text-red-700 hover:bg-gray-400" onClick={handleLogOut}>
+                    <AiOutlineLogout />
                 </div>
             </nav>
         </>
