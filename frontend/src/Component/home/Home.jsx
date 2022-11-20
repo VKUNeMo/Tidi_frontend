@@ -20,10 +20,6 @@ function Home() {
     return (
         <>
             <div className=' bg-gray-900 text-white bg-opacity-60 w-full h-screen relative' >
-                <Nav>
-
-                </Nav>
-                <button onClick={handleLogOut} className="absolute top-0 right-0">Log out</button>
             </div>
         </>
     );
