@@ -1,4 +1,4 @@
-import instance from "../../createInstance";
+import {instance} from "../../createInstance";
 import {
     registerStart,
     registerSuccess,
@@ -34,10 +34,10 @@ export const loginUser = async (user, dispatch, navigate) => {
     }
 }
 
-export const logoutUser = async (dispatch, navigate, accessToken)=>{
+export const logoutUser = async (dispatch, navigate, accessToken, axiosJWT)=>{
     dispatch(logoutStart());
     try {
-        await instance.post("v1/auth/logout", '', {headers: {token: `Bearer ${accessToken}`}});
+        await axiosJWT.post("v1/auth/logout", '', {headers: {token: `Bearer ${accessToken}`}});
         dispatch(logoutSuccess());
         alert("Đăng xuất thành công");
         navigate("/login");
