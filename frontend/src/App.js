@@ -11,13 +11,13 @@ import {useSelector} from "react-redux";
 function App() {
     const isLogin = useSelector(state => state.auth.login.success);
 
-    useEffect(()=>{
-        if(isLogin){
-            setTimeout(()=>{
-
-            }, 10000);
-        }
-    }, [isLogin]);
+    // useEffect(()=>{
+    //     if(isLogin){
+    //         setTimeout(()=>{
+    //
+    //         }, 10000);
+    //     }
+    // }, [isLogin]);
 
   return (
     <Router>
