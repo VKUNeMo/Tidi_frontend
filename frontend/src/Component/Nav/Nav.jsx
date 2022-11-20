@@ -4,15 +4,21 @@ import { AiOutlineTeam, AiOutlineFolderOpen, AiOutlineFile, AiOutlineLogout } fr
 import { logoutUser } from "../../Redux/APIRequest/apiAuthRequest";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import {createAxios} from "../../createInstance";
+import {logoutSuccess} from "../../Redux/Slice/authSlice";
 
 
 function Nav() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const token = useSelector(state => state.auth.login.token?.accessToken);
+    const token = useSelector(state => state.auth.login.token);
+    const refreshToken = token?.refreshToken;
+    const accessToken = token?.accessToken;
+    const user = useSelector(state => state.auth.login.currentUser);
+    const axiosJWT = createAxios(user, accessToken, refreshToken, dispatch, logoutSuccess);
 
     function handleLogOut() {
-        logoutUser(dispatch, navigate, token);
+        logoutUser(dispatch, navigate, accessToken, axiosJWT);
     }
 
     return (

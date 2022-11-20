@@ -51,6 +51,9 @@ const authSlice = createSlice({
             state.login.error = true;
             state.login.msg = action.payload;
         },
+        loginCheck: (state, action) => {
+            state.login.token = action.payload;
+        },
 
         logoutStart: state => {
             state.login.isFetching = false;
@@ -75,6 +78,7 @@ export const {
     loginStart,
     loginSuccess,
     loginFail,
+    loginCheck,
     logoutFail,
     logoutStart,
     logoutSuccess

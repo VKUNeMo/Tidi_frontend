@@ -2,10 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="caf7ad57-4f0e-446a-9aad-2fa3fcf00677" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/Component/Nav/Nav.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Component/Nav/Nav.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/Component/home/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Component/home/Home.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/Component/login/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Component/login/Login.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/Component/register/Register.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Component/register/Register.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Redux/APIRequest/apiAuthRequest.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Redux/APIRequest/apiAuthRequest.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Redux/Slice/authSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Redux/Slice/authSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Redux/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Redux/store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/createInstance.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/createInstance.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
