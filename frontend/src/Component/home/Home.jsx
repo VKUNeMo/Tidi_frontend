@@ -8,17 +8,17 @@ function Home() {
 
     return (
         <>
-            <div className=' bg-gray-900 text-white bg-opacity-60 w-full h-screen relative' >
-                <div className="float-right">
-                    {isLogin ||
-                        (
-                            <>
-                                <Link to={"/login"}>Login</Link>
-                                <Link to={"/register"}>Register</Link>
-                            </>
-                        )
-                    }
-                </div>
+            {/*<div className=' bg-gray-900 text-white bg-opacity-60 w-full h-screen relative' >*/}
+            <div className='bg-opacity-60'>
+                <div>Home</div>
+                {isLogin ||
+                    (
+                        <div className="float-right">
+                            <Link to={"/login"}>Login</Link>
+                            <Link to={"/register"}>Register</Link>
+                        </div>
+                    )
+                }
             </div>
         </>
     );
