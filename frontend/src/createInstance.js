@@ -9,7 +9,6 @@ const instance = axios.create({
 const refreshToken = async (token) => {
     try {
         const res = await instance.post("v1/auth/refresh", '', {headers: {refreshToken: token}});
-        console.log(res);
         return res.data;
     } catch (err) {
         console.log(err);

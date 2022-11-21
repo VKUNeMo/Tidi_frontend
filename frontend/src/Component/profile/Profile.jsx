@@ -1,5 +1,4 @@
-import {useSelector} from "react-redux";
-import {useState} from "react";
+import React from "react";
 import Nav from "./nav/Nav";
 
 const Profile = () => {
