@@ -10,6 +10,7 @@ import BlogCreate from "./Component/blog/BlogCreate";
 import {useSelector} from "react-redux";
 import Blog from "./Component/blog/Blog";
 import View from "./Component/blog/View";
+import ViewPublic from "./Component/blog/ViewPublic";
 
 
 function App() {
@@ -35,8 +36,8 @@ function App() {
                         <Route path="blog/*" element={
                             <ProtectedRoute user={isLogin}><Blog/></ProtectedRoute>
                         }>
-                            <Route path="article"/>
-                            <Route path="new" element={BlogCreate}/>
+                            <Route path="article" element={<ViewPublic/>}/>
+                            <Route path="new" element={<BlogCreate/>}/>
                             <Route path="all" element={<View/>}/>
                         </Route>
                     </Routes>

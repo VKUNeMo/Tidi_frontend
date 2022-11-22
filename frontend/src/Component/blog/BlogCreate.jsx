@@ -12,7 +12,7 @@ function BlogCreate() {
     useEffect(()=>{
         if(!editor.isReady){
             // eslint-disable-next-line react-hooks/exhaustive-deps
-            editor = config();
+            editor = config(false);
         }
     },[]);
     const dispatch = useDispatch();
@@ -24,6 +24,7 @@ function BlogCreate() {
 
     const axiosJWT = createAxios(user, accessToken, refreshToken, dispatch, addSuccess);
     const handleStore = async ()=>{
+
         await editor.save().then(async (outputData) => {
             const title = outputData.blocks[0].data.text;
             const data = {title: title, content: outputData}

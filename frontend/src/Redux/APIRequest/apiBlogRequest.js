@@ -22,4 +22,26 @@ const getAllOwnerBlog = async (accessToken, dispatch, axiosJWT) => {
     }
 }
 
-export {addNewBlog, getAllOwnerBlog};
+const getAllPublicBlog = async (dispatch, axiosJWT) => {
+  dispatch(getBlogStart());
+  try{
+      const data = await axiosJWT.get("/v1/user/blogs/public/all", '');
+      dispatch(getBlogSuccess());
+      return data;
+  }catch(err){
+      dispatch(getBlogFail("Lỗi"));
+  }
+}
+
+const getDetailBlog = async (dispatch, axiosJWT, idBlog) => {
+    dispatch(getBlogStart());
+    try {
+        const data = await axiosJWT.get(`/v1/user/blogs/${idBlog}`, '');
+        dispatch(getBlogSuccess());
+        return data;
+    }catch (err){
+        dispatch(getBlogFail("Lỗi"));
+    }
+}
+
+export {addNewBlog, getAllOwnerBlog, getAllPublicBlog, getDetailBlog};
