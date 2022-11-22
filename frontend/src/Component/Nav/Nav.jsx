@@ -1,4 +1,5 @@
 import React from "react";
+<<<<<<< Updated upstream
 import { BsHouse, BsNewspaper } from "react-icons/bs";
 import { AiOutlineFile, AiOutlineLogout, AiOutlineStar, AiOutlineUser, AiOutlineSetting } from "react-icons/ai"
 import { logoutUser } from "../../Redux/APIRequest/apiAuthRequest";
@@ -7,6 +8,17 @@ import { useNavigate,NavLink } from "react-router-dom";
 import { createAxios } from "../../createInstance";
 import { logoutSuccess } from "../../Redux/Slice/authSlice";
 
+=======
+import { BsHouse, BsNewspaper, BsHouseFill } from "react-icons/bs";
+import { AiOutlineFile, AiOutlineLogout, AiOutlineStar, AiOutlineUser, AiFillStar, AiOutlineSetting, AiFillSetting } from "react-icons/ai";
+import { FaNewspaper, FaUserAlt } from "react-icons/fa";
+import { logoutUser } from "../../Redux/APIRequest/apiAuthRequest";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, NavLink, useLocation } from "react-router-dom";
+import { createAxios } from "../../createInstance";
+import { logoutSuccess } from "../../Redux/Slice/authSlice";
+import { Location } from "react-router-dom";
+>>>>>>> Stashed changes
 
 function Nav() {
 
@@ -21,55 +33,71 @@ function Nav() {
     const listsTop = [
         {
             icon: <BsHouse />,
+            iconActive: <BsHouseFill />,
             item: "home",
             itemLink: "/home",
         },
         {
             icon: <BsNewspaper />,
+            iconActive: <FaNewspaper />,
             item: "blog",
-            itemLink: "blog",
+            itemLink: "/blog",
         },
         {
             icon: <AiOutlineStar />,
+            iconActive: <AiFillStar />,
             item: "likeBlog",
-            itemLink: "likeBlog",
+            itemLink: "/likeBlog",
         },
         {
             icon: <AiOutlineFile />,
+            iconActive: <AiOutlineFile />,
             item: "chi quen roi :(",
-            itemLink: "test",
+            itemLink: "/test",
         }
     ]
     const listsUnder = [
 
         {
             icon: <AiOutlineSetting />,
+            iconActive: <AiFillSetting />,
             item: "setting :(",
-            itemLink: "setting",
+            itemLink: "/setting",
         },
         {
             icon: <AiOutlineUser />,
+            iconActive: <FaUserAlt />,
             item: "profile",
-            itemLink: "profile",
+            itemLink: "/profile",
         },
     ]
+    const location = useLocation();
+    let isActive = false;
+    console.log(location);
     const itemTop = listsTop.map((list, index) => {
         return (
+            <NavLink className={`item_${index + 1}`} to={`${list.itemLink}`} key={index} exact>
+                {!(location.pathname === list.itemLink) ?
+                    (<div className="p-4 text-2xl cursor-pointer rounded text-gray-900 hover:bg-gray-400 " >
+                        {list.icon}
 
-            <NavLink className={`item_${index + 1}`} to={`${list.itemLink}`} key={index} exact isActive={console.log(list.index)}>
-                <div className="p-4 text-2xl cursor-pointer rounded text-gray-900 hover:bg-gray-400 " >
-                    {list.icon}
+                    </div>) : (<div className="p-4 text-2xl cursor-pointer text-gray-900 border-r border-black" >
+                        {list.iconActive}
 
-                </div>
+                    </div>)}
             </NavLink >
         )
     })
     const itemUnder = listsUnder.map((list, index) => {
         return (
             <NavLink className={`item_${index + 1}`} to={`${list.itemLink}`} key={index}>
-                <div className="p-4 text-2xl cursor-pointer rounded text-gray-900 hover:bg-gray-400 " >
-                    {list.icon}
-                </div>
+                {!(location.pathname === list.itemLink) ?
+                    (<div className="p-4 text-2xl cursor-pointer rounded text-gray-900 hover:bg-gray-400 " >
+                        {list.icon}
+
+                    </div>) : (<div className="p-4 text-2xl cursor-pointer text-gray-900 border-r border-black" >
+                        {list.iconActive}
+                    </div>)}
             </NavLink >
         )
     })
@@ -79,7 +107,7 @@ function Nav() {
 
     return (
         <>
-            <nav className="h-full flex items-center fixed flex-col border-r border-r-slate-300 justify-between z-50">
+            <nav className="h-screen flex items-center float-left flex-col border-r border-r-slate-300 justify-between z-50">
                 <div className="w-auto">
                     <div>
                         <img src="icon.png" alt="anh icon" className="w-14 h-14 object-cover cursor-pointer" />
