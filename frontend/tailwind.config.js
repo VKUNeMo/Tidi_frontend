@@ -4,7 +4,23 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'poppins': ['Poppins', 'sans-serif']
+      },
+      gridTemplateColumns: {
+        '16': 'repeat(16, minmax(0, 1fr))',
+        '24': 'repeat(24, minmax(0, 1fr))',
+        '28': 'repeat(28, minmax(0, 1fr))',
+        'footer': '200px minmax(900px, 1fr) 100px',
+      },
+      minHeight: {
+        '80px': '160px',
+      }
+    },
   },
   plugins: [],
+  corePlugins: {
+    preflight: false
+  }
 }
