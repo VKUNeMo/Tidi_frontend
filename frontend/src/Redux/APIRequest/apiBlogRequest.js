@@ -5,7 +5,7 @@ const addNewBlog = async (accessToken, data, dispatch, navigate, axiosJWT) =>{
     try{
         await axiosJWT.post("/v1/user/blogs/store", data, {headers: {token: `Bearer ${accessToken}`}});
         dispatch(addSuccess("Success"));
-        navigate("/blog/mine");
+        navigate("/blog/my-blog");
     }catch(err){
         dispatch(addFailed("Failed"));
     }

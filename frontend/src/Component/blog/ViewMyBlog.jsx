@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {getAllPublicBlog} from "../../Redux/APIRequest/apiBlogRequest";
+import {getAllOwnerBlog} from "../../Redux/APIRequest/apiBlogRequest";
 import {useDispatch, useSelector} from "react-redux";
 import {createAxios} from "../../createInstance";
 import {getBlogSuccess} from "../../Redux/Slice/blogSlice";
@@ -7,7 +7,7 @@ import {Link, useLocation} from "react-router-dom";
 import moment from "moment";
 import HeaderBlog from "./header/Header.blog";
 
-function ViewPublic() {
+function ViewMyBlog() {
     const [data, setData] = useState([]);
     const dispatch = useDispatch();
     const token = useSelector(state => state.auth.login.token);
@@ -16,8 +16,9 @@ function ViewPublic() {
     const user = useSelector(state => state.auth.login.currentUser);
     useEffect(()=>{
         const axiosJWT = createAxios(user, accessToken, refreshToken, dispatch, getBlogSuccess);
-        getAllPublicBlog(dispatch, axiosJWT).then(data=> setData(data.data.blogs));
+        getAllOwnerBlog(accessToken, dispatch, axiosJWT).then(data=> setData(data.data.blogs));
     }, [accessToken, dispatch, refreshToken, user]);
+
     const url = useLocation();
     return (
         <div className={""}>
@@ -31,12 +32,12 @@ function ViewPublic() {
                                 <div className={"mx-6"}>
                                     <div className={"flex justify-between w-fit"}>
                                         <div>
-                                            <img src={blog?.idUser.avatar} alt="" className={"w-10 h-10 rounded-2xl bg-black"}/>
+                                            <img src={user?.avatar} alt="" className={"w-10 h-10 rounded-2xl bg-black"}/>
                                         </div>
                                         <div className={"ml-2"}>
                                     <span>
                                         <span className={"font-semibold"}>
-                                            {blog?.idUser.firstName + " " + blog?.idUser?.lastName + " "}
+                                            {user?.firstName + " " + user?.lastName + " "}
                                         </span>
                                         <span className={"font-thin text-gray-400"}>
                                             • {moment(blog.createdAt).format("LL")}
@@ -48,7 +49,17 @@ function ViewPublic() {
                                     <h2 className={"mb-2"}>
                                         {blog.title}
                                     </h2>
-                                    <p>{blog.content.blocks[1].data.text}</p>
+                                    <p className={"mb-2"}>{blog.content.blocks[1].data.text}</p>
+                                    {blog.status ? (
+                                        <span className={"bg-blue-500 py-1 px-2 rounded"}>
+                                    Public
+                                </span>
+                                    ):(
+                                        <span className={"bg-red-400 py-1 px-2 rounded"}>
+                                    Private
+                                </span>
+                                    )
+                                    }
                                 </div>
                             </Link>
                         </li>
@@ -59,4 +70,4 @@ function ViewPublic() {
     )
 }
 
-export default ViewPublic;
+export default ViewMyBlog;

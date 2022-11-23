@@ -5,21 +5,20 @@ import {AiOutlineUser} from "react-icons/ai";
 import {BsPencilSquare} from "react-icons/bs";
 import {MdArticle, MdFavoriteBorder, MdStorage} from "react-icons/md";
 
-function NavBlog() {
+function NavProfile() {
     return (
-        <nav
-            className="h-screen bg-white flex fixed flex-col border-solid border-0 border-r-2 border-r-gray-200 z-50 top-0 left-12 w-60">
+        <nav className="h-screen flex fixed flex-col border-solid border-0 border-r-2 border-r-gray-200 z-50 top-0 left-12 w-60">
             <div className={"w-full text-center border-solid border-0 border-b-2 border-gray-200 py-3 px-2"}>
-                <h1 className={""}>Blog</h1>
+                <h1 className={""}>Profile</h1>
             </div>
-            <div className="relative my-4 mx-2">
-                <input type="search" placeholder="Search..." className="py-2 pl-2 outline-0 rounded border border-gray-300 w-56"/>
-                <button type="submit" className="absolute right-0 top-0.5 mr-1 flex justify-center border-0 bg-blue-400 p-2 rounded">
-                    <FiSearch/>
-                </button>
+            {/*<div className="relative my-4 mx-2">*/}
+            {/*    <input type="search" placeholder="Search..." className="py-2 pl-2 outline-0 rounded border border-gray-300 w-56"/>*/}
+            {/*    <button type="submit" className="absolute right-0 top-0.5 mr-1 flex justify-center border-0 bg-blue-400 p-2 rounded">*/}
+            {/*        <FiSearch/>*/}
+            {/*    </button>*/}
 
-            </div>
-            <div className={"flex flex-col ml-8"}>
+            {/*</div>*/}
+            <div className={"flex flex-col ml-8 mt-4"}>
                 <Link to={"article"} className={"text-gray-500 my-3"}><MdArticle/> New Articles</Link>
                 <Link to={"my-blog"} className={"text-gray-500 my-3"}><AiOutlineUser/> My Blog</Link>
                 <Link to={"new"} className={"text-gray-500 my-3"}><BsPencilSquare/>  New</Link>
@@ -30,4 +29,4 @@ function NavBlog() {
     )
 }
 
-export default NavBlog;
+export default NavProfile;

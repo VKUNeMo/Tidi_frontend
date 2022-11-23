@@ -2,7 +2,7 @@ import React from "react";
 import NavBlog from "./Nav.blog";
 import {Routes, Route} from "react-router-dom";
 import BlogCreate from "./BlogCreate";
-import View from "./View";
+import ViewMyBlog from "./ViewMyBlog";
 import ViewPublic from "./ViewPublic";
 import Detail from "./Detail";
 
@@ -15,7 +15,7 @@ function Blog() {
                     <Route path={"/*"}>
                         <Route path={"article"} element={<ViewPublic/>}/>
                         <Route path={"new"} element={<BlogCreate/>}/>
-                        <Route path={"all"} element={<View/>}/>
+                        <Route path={"my-blog"} element={<ViewMyBlog/>}/>
                         <Route path={"view/:idBlog"} element={<Detail/>}/>
                     </Route>
                 </Routes>
