@@ -9,7 +9,7 @@ import Nav from "./Component/Nav/Nav";
 import BlogCreate from "./Component/blog/BlogCreate";
 import {useSelector} from "react-redux";
 import Blog from "./Component/blog/Blog";
-import View from "./Component/blog/View";
+import ViewMyBlog from "./Component/blog/ViewMyBlog";
 import ViewPublic from "./Component/blog/ViewPublic";
 
 
@@ -38,7 +38,7 @@ function App() {
                         }>
                             <Route path="article" element={<ViewPublic/>}/>
                             <Route path="new" element={<BlogCreate/>}/>
-                            <Route path="all" element={<View/>}/>
+                            <Route path="my-blog" element={<ViewMyBlog/>}/>
                         </Route>
                     </Routes>
                 </div>
