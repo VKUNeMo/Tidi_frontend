@@ -32,16 +32,16 @@ function ViewMyBlog() {
                                     <div className={"mx-6"}>
                                         <div className={"flex justify-between w-fit"}>
                                             <div>
-                                                <img src={user?.avatar} alt="" className={"w-10 h-10 rounded-2xl bg-black"}/>
+                                                <img src={user?.avatar} alt="" className={"w-10 h-10 rounded-full border-solid bg-black"}/>
                                             </div>
                                             <div className={"ml-2"}>
                                     <span>
-                                        <span className={"font-semibold"}>
+                                        <p className={"font-semibold"}>
                                             {user?.firstName + " " + user?.lastName + " "}
-                                        </span>
-                                        <span className={"font-thin text-gray-400"}>
-                                            • {moment(blog.createdAt).format("LL")}
-                                        </span>
+                                        </p>
+                                        <p className={"font-thin text-gray-400"}>
+                                            Updated at {moment(blog.createdAt).format("HH:MM A •  LL")}
+                                        </p>
                                     </span>
                                             </div>
                                         </div>

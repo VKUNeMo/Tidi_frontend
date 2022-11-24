@@ -11,6 +11,7 @@ import {useSelector} from "react-redux";
 import Blog from "./Component/blog/Blog";
 import ViewMyBlog from "./Component/blog/ViewMyBlog";
 import ViewPublic from "./Component/blog/ViewPublic";
+import EditBlog from "./Component/blog/EditBlog";
 
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
                             <Route path="article" element={<ViewPublic/>}/>
                             <Route path="new" element={<BlogCreate/>}/>
                             <Route path="my-blog" element={<ViewMyBlog/>}/>
+                            <Route path="edit" element={<EditBlog/>}/>
                         </Route>
                     </Routes>
                 </div>

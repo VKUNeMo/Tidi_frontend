@@ -45,4 +45,22 @@ const getDetailBlog = async (dispatch, axiosJWT, idBlog) => {
     }
 }
 
-export {addNewBlog, getAllOwnerBlog, getAllPublicBlog, getDetailBlog};
+const editBlog = async (dispatch, navigate, accessToken, axiosJWT, idBlog, data) => {
+    try {
+        await axiosJWT.post(`/v1/user/blogs/edit/${idBlog}`, data, {headers: {token: `Bearer ${accessToken}`}});
+        navigate("/blog/my-blog");
+    }catch (err){
+        console.log(err);
+    }
+}
+
+const deleteBlog = async (dispatch, navigate, accessToken, axiosJWT, idBlog) => {
+    try{
+        await axiosJWT.delete(`/v1/user/blogs/delete/${idBlog}`);
+        navigate("/blog/my-blog");
+    }catch(err){
+        console.log(err);
+    }
+}
+
+export {addNewBlog, getAllOwnerBlog, getAllPublicBlog, getDetailBlog, editBlog, deleteBlog};

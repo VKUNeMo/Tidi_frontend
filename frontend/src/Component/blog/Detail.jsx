@@ -18,7 +18,6 @@ function Detail() {
     const [data, setData] = useState([]);
     useEffect(()=>{
         const axiosJWT = createAxios(user, accessToken, refreshToken, dispatch, getBlogSuccess);
-        console.log(accessToken);
         getDetailBlog(dispatch, axiosJWT, idBlog).then(raw => {
             const data = raw.data.blog.content;
             setData(raw.data.blog);

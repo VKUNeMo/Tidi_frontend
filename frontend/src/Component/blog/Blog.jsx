@@ -5,6 +5,7 @@ import BlogCreate from "./BlogCreate";
 import ViewMyBlog from "./ViewMyBlog";
 import ViewPublic from "./ViewPublic";
 import Detail from "./Detail";
+import EditBlog from "./EditBlog";
 
 function Blog() {
     return (
@@ -19,6 +20,7 @@ function Blog() {
                         <Route path={"new"} element={<BlogCreate/>}/>
                         <Route path={"my-blog"} element={<ViewMyBlog/>}/>
                         <Route path={"view/:idBlog"} element={<Detail/>}/>
+                        <Route path={"edit/:idBlog"} element={<EditBlog/>}/>
                     </Route>
                 </Routes>
             </div>
