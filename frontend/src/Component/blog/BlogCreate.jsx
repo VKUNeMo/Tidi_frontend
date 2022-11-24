@@ -26,7 +26,6 @@ function BlogCreate() {
     const axiosJWT = createAxios(user, accessToken, refreshToken, dispatch, addSuccess);
     const handleStore = async (editor)=>{
         await editor.save().then(async (outputData) => {
-            // const title = outputData.blocks[0].data.text;
             const data = {title: title, content: outputData, status: statusBlog};
             await addNewBlog(accessToken, data, dispatch, navigate, axiosJWT);
         }).catch((error) => {

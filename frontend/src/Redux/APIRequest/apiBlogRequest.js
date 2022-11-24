@@ -1,4 +1,5 @@
 import {addFailed, addStart, addSuccess, getBlogFail, getBlogStart, getBlogSuccess} from "../Slice/blogSlice";
+import {instance} from "../../createInstance";
 
 const addNewBlog = async (accessToken, data, dispatch, navigate, axiosJWT) =>{
     dispatch(addStart());
@@ -25,7 +26,7 @@ const getAllOwnerBlog = async (accessToken, dispatch, axiosJWT) => {
 const getAllPublicBlog = async (dispatch, axiosJWT) => {
   dispatch(getBlogStart());
   try{
-      const data = await axiosJWT.get("/v1/user/blogs/public/all", '');
+      const data = await instance.get("/v1/user/blogs/public/all");
       dispatch(getBlogSuccess());
       return data;
   }catch(err){

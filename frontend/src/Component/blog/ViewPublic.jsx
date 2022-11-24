@@ -21,9 +21,10 @@ function ViewPublic() {
     const url = useLocation();
     return (
         <div className={""}>
-            <HeaderBlog/>
+            <HeaderBlog type={"search"}/>
+
             <div className={"mt-4"}>
-                <h1 className={"mb-6 mx-6"}>Articles</h1>
+                <h1 className={"mb-6 mx-6"}>Newest</h1>
                 <ul>
                     {data.map(blog => (
                         <li key={blog._id} className={"mx-6 border-solid border-0 border-t-2 border-gray-400 hover:bg-gray-500 min-h-80px"}>

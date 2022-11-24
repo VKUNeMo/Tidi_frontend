@@ -1,5 +1,5 @@
 import React from "react";
-import NavBlog from "./Nav.blog";
+import NavBlog from "./nav/Nav.blog";
 import {Routes, Route} from "react-router-dom";
 import BlogCreate from "./BlogCreate";
 import ViewMyBlog from "./ViewMyBlog";
@@ -8,9 +8,11 @@ import Detail from "./Detail";
 
 function Blog() {
     return (
-        <div className={"ml-72"}>
-            <NavBlog/>
-            <div>
+        <div className={"ml-12 flex"}>
+            <div className={"sticky top-0"}>
+                <NavBlog/>
+            </div>
+            <div className={"w-full border-solid border-0 border-l-2 border-l-gray-200"}>
                 <Routes>
                     <Route path={"/*"}>
                         <Route path={"article"} element={<ViewPublic/>}/>
