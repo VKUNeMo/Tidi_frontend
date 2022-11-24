@@ -33,9 +33,9 @@ function Login() {
     }
 
     return (
-
-        <>
-            <div className='h-4/5 w-1/4 bg-black bg-opacity-70 px-10 shadow-2xl rounded-lg flex justify-center flex-col h-screen'>
+        <div className={"h-screen w-screen flex justify-center items-center"}>
+            <div
+                className='bg-black bg-opacity-70 px-10 shadow-2xl rounded-lg flex justify-center flex-col py-10'>
                 <div className='py-4 text-center w-full text-white  '>
                     <h2 className=' text-5xl font-bold tracking-wider mb-1 '>Welcome!</h2>
                     <p className='font-normal text-gray-400'> Wish you have a nice time</p>
@@ -74,7 +74,7 @@ function Login() {
                     <Link to='/register' className='italic underline '>Register</Link>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 

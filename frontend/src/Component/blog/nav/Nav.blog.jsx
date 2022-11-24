@@ -8,8 +8,8 @@ import {MdArticle, MdFavoriteBorder, MdStorage} from "react-icons/md";
 function NavBlog() {
     return (
         <nav
-            className="h-screen flex fixed flex-col border-solid border-0 border-r-2 border-r-gray-200 z-50 top-0 left-12 w-60">
-            <div className={"w-full text-center border-solid border-0 border-b-2 border-gray-200 py-3 px-2"}>
+            className="h-min sticky top-0 bg-white flex flex-col z-50 w-60">
+            <div className={"w-full text-center border-solid border-0 border-b-2 border-gray-200 py-3 px-2 h-14"}>
                 <h1 className={""}>Blog</h1>
             </div>
             <div className="relative my-4 mx-2">
@@ -17,10 +17,11 @@ function NavBlog() {
                 <button type="submit" className="absolute right-0 top-0.5 mr-1 flex justify-center border-0 bg-blue-400 p-2 rounded">
                     <FiSearch/>
                 </button>
+
             </div>
             <div className={"flex flex-col ml-8"}>
                 <Link to={"article"} className={"text-gray-500 my-3"}><MdArticle/> New Articles</Link>
-                <Link to={"all"} className={"text-gray-500 my-3"}><AiOutlineUser/> My Blog</Link>
+                <Link to={"my-blog"} className={"text-gray-500 my-3"}><AiOutlineUser/> My Blog</Link>
                 <Link to={"new"} className={"text-gray-500 my-3"}><BsPencilSquare/>  New</Link>
                 <Link to={"favourite"} className={"text-gray-500 my-3"}><MdFavoriteBorder/> Favourite</Link>
                 <Link to={"storage"} className={"text-gray-500 my-3"}><MdStorage/> Storage</Link>

@@ -42,6 +42,7 @@ export const logoutUser = async (dispatch, navigate, accessToken, axiosJWT)=>{
         alert("Đăng xuất thành công");
         navigate("/login");
     }catch (err){
+        console.log(err);
         dispatch(logoutFail());
     }
 }
