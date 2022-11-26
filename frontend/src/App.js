@@ -6,11 +6,13 @@ import Home from "./Component/home/Home";
 import './App.css';
 import Profile from "./Component/profile/Profile";
 import Nav from "./Component/Nav/Nav";
-import BlogCreate from "./Component/blog/BlogCreate";
+import BlogCreate from "./Component/blog/create/BlogCreate";
 import {useSelector} from "react-redux";
 import Blog from "./Component/blog/Blog";
 import ViewMyBlog from "./Component/blog/ViewMyBlog";
 import ViewPublic from "./Component/blog/ViewPublic";
+import EditBlog from "./Component/blog/edit/EditBlog";
+import ViewProfile from "./Component/profile/viewProfile/ViewProfile";
 
 
 function App() {
@@ -39,6 +41,17 @@ function App() {
                             <Route path="article" element={<ViewPublic/>}/>
                             <Route path="new" element={<BlogCreate/>}/>
                             <Route path="my-blog" element={<ViewMyBlog/>}/>
+                            <Route path="edit" element={<EditBlog/>}/>
+                        </Route>
+                        <Route path={"profile/*"} element={
+                            <ProtectedRoute user={isLogin}>
+                                <Profile/>
+                            </ProtectedRoute>
+                        }>
+                            <Route path={"me/*"} element={<ViewProfile/>}>
+                                <Route path={"blog"} element={<ViewProfile/>}/>
+                            </Route>
+                            <Route path={":idUser"} element={<ViewProfile/>}/>
                         </Route>
                     </Routes>
                 </div>

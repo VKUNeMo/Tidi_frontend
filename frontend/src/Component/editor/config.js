@@ -50,7 +50,10 @@ const config = (mode, holder='editorjs', data = initData) => {
                     tunes: ['anyTuneName'],
                     shortcut: 'CMD+SHIFT+H'
                 },
-                SimpleImage: SimpleImage,
+                SimpleImage: {
+                    class: SimpleImage,
+                    tunes: ['anyTuneName'],
+                },
                 list: {
                     class: List,
                     inlineToolbar: true,
@@ -73,7 +76,10 @@ const config = (mode, holder='editorjs', data = initData) => {
                     tunes: ['anyTuneName'],
                 },
 
-                image: Image,
+                image: {
+                    class: Image,
+                    tunes: ['anyTuneName'],
+                },
                 raw: Raw,
                 warning: Warning,
 
@@ -122,10 +128,9 @@ const config = (mode, holder='editorjs', data = initData) => {
 
             },
             data: data,
-            onChange: async function (api, event) {
-                console.log('something changed', event);
-
-            }
+            // onChange: async function (api, event) {
+            //     console.log('something changed', event);
+            // }
         }
     );
 }

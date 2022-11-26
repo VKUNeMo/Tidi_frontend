@@ -1,8 +1,8 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import {AiOutlineUser} from "react-icons/ai";
-import {BsPencilSquare} from "react-icons/bs";
-import {MdArticle, MdFavoriteBorder, MdStorage} from "react-icons/md";
+import {MdArticle, MdStorage} from "react-icons/md";
+import {CgPassword, CgProfile} from "react-icons/cg";
+import {IoPeopleOutline} from "react-icons/io5";
 
 function NavProfile() {
     return (
@@ -11,10 +11,11 @@ function NavProfile() {
                 <h1 className={""}>Profile</h1>
             </div>
             <div className={"flex flex-col ml-8 mt-4"}>
-                <Link to={"article"} className={"text-gray-500 my-3"}><MdArticle/> New Articles</Link>
-                <Link to={"my-blog"} className={"text-gray-500 my-3"}><AiOutlineUser/> My Blog</Link>
-                <Link to={"new"} className={"text-gray-500 my-3"}><BsPencilSquare/>  New</Link>
-                <Link to={"favourite"} className={"text-gray-500 my-3"}><MdFavoriteBorder/> Favourite</Link>
+                <Link to={"me"} className={"text-gray-500 my-3"}><CgProfile/> Profile</Link>
+                <Link to={"detail"} className={"text-gray-500 my-3"}><MdArticle/> My details</Link>
+                {/* eslint-disable-next-line react/jsx-no-undef */}
+                <Link to={"new"} className={"text-gray-500 my-3"}><CgPassword/>  Password</Link>
+                <Link to={"favourite"} className={"text-gray-500 my-3"}><IoPeopleOutline/> Follow</Link>
                 <Link to={"storage"} className={"text-gray-500 my-3"}><MdStorage/> Storage</Link>
             </div>
         </nav>

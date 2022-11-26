@@ -1,17 +1,22 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import {Link, useNavigate} from "react-router-dom";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {registerUser} from "../../Redux/APIRequest/apiAuthRequest";
 
 function Register() {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const isLogin = useSelector(state => state.auth.login.success);
+
+    useEffect(()=>{
+        isLogin && navigate('/');
+    },[isLogin, navigate]);
     const [lastname, setLastname] = useState('');
     const [firstname, setFirstname] = useState('');
     const [userName, setUserName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [rePass, setRePass] = useState('');
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
 
 
     function handleSubmit(e) {

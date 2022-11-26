@@ -36,12 +36,12 @@ function ViewPublic() {
                                         </div>
                                         <div className={"ml-2"}>
                                     <span>
-                                        <span className={"font-semibold"}>
+                                        <p className={"font-semibold"}>
                                             {blog?.idUser.firstName + " " + blog?.idUser?.lastName + " "}
-                                        </span>
-                                        <span className={"font-thin text-gray-400"}>
-                                            • {moment(blog.createdAt).format("LL")}
-                                        </span>
+                                        </p>
+                                        <p className={"font-thin text-gray-400"}>
+                                            Updated at {moment(blog.createdAt).format("HH:MM A • LL")}
+                                        </p>
                                     </span>
                                         </div>
                                     </div>
