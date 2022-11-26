@@ -11,13 +11,14 @@ import {
     REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import blogSlice from "./Slice/blogSlice";
 
 const persistConfig = {
     key: "root",
     version: 1,
     storage,
 };
-const rootReducer = combineReducers({ auth: authSlice});
+const rootReducer = combineReducers({ auth: authSlice, blog: blogSlice});
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({

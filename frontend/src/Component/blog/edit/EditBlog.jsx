@@ -1,11 +1,10 @@
 import React, {useEffect, useRef, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {createAxios} from "../../createInstance";
-import {addSuccess, getBlogSuccess} from "../../Redux/Slice/blogSlice";
-import {addNewBlog, editBlog, getDetailBlog} from "../../Redux/APIRequest/apiBlogRequest";
-import config from "../editor/config";
-import HeaderBlog from "./header/Header.blog";
+import {createAxios} from "../../../createInstance";
+import {getBlogSuccess} from "../../../Redux/Slice/blogSlice";
+import {editBlog, getDetailBlog} from "../../../Redux/APIRequest/apiBlogRequest";
+import config from "../../editor/config";
 
 let editor = {isReady: false};
 

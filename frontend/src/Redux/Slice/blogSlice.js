@@ -7,6 +7,7 @@ const blogSlice = createSlice({
             isFetching: false,
             success: false,
             error: false,
+            blogCurrent: [],
             msg: ""
         }
     },
@@ -39,6 +40,7 @@ const blogSlice = createSlice({
             state.init.success = true;
             state.init.error = false;
             state.init.msg = action.payload;
+            state.init.blogCurrent = action.payload;
         },
         getBlogFail: (state, action) => {
             state.init.success = false;

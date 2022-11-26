@@ -1,11 +1,11 @@
 import React, {useEffect, useRef, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {createAxios} from "../../createInstance";
-import {getBlogSuccess} from "../../Redux/Slice/blogSlice";
-import {getDetailBlog} from "../../Redux/APIRequest/apiBlogRequest";
+import {createAxios} from "../../../createInstance";
+import {getBlogSuccess} from "../../../Redux/Slice/blogSlice";
+import {getDetailBlog} from "../../../Redux/APIRequest/apiBlogRequest";
 import {useParams} from "react-router-dom";
-import config from "../editor/config";
-import HeaderBlog from "./header/Header.blog";
+import config from "../../editor/config";
+import HeaderBlog from "../header/Header.blog";
 
 function Detail() {
     const editor = useRef(null);

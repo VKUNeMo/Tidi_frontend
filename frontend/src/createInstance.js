@@ -30,6 +30,9 @@ const createAxios = (user, accessToken, reToken, dispatch, stateSuccess) => {
                 dispatch(stateSuccess(refreshUser));
                 config.headers["token"] = "Bearer " + data.accessToken;
             }
+            else{
+                config.headers["token"] = "Bearer " + accessToken;
+            }
             return config;
         },
         (err) => {
