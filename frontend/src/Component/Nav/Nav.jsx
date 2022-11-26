@@ -1,14 +1,4 @@
 import React from "react";
-<<<<<<< Updated upstream
-import { BsHouse, BsNewspaper } from "react-icons/bs";
-import { AiOutlineFile, AiOutlineLogout, AiOutlineStar, AiOutlineUser, AiOutlineSetting } from "react-icons/ai"
-import { logoutUser } from "../../Redux/APIRequest/apiAuthRequest";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate,NavLink } from "react-router-dom";
-import { createAxios } from "../../createInstance";
-import { logoutSuccess } from "../../Redux/Slice/authSlice";
-
-=======
 import { BsHouse, BsNewspaper, BsHouseFill } from "react-icons/bs";
 import { AiOutlineFile, AiOutlineLogout, AiOutlineStar, AiOutlineUser, AiFillStar, AiOutlineSetting, AiFillSetting } from "react-icons/ai";
 import { FaNewspaper, FaUserAlt } from "react-icons/fa";
@@ -17,8 +7,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, NavLink, useLocation } from "react-router-dom";
 import { createAxios } from "../../createInstance";
 import { logoutSuccess } from "../../Redux/Slice/authSlice";
-import { Location } from "react-router-dom";
->>>>>>> Stashed changes
 
 function Nav() {
 
@@ -72,18 +60,14 @@ function Nav() {
         },
     ]
     const location = useLocation();
-    let isActive = false;
-    console.log(location);
     const itemTop = listsTop.map((list, index) => {
         return (
             <NavLink className={`item_${index + 1}`} to={`${list.itemLink}`} key={index} exact>
-                {!(location.pathname === list.itemLink) ?
-                    (<div className="p-4 text-2xl cursor-pointer rounded text-gray-900 hover:bg-gray-400 " >
+                {!(location.pathname.includes(list.itemLink)) ?
+                    (<div className="p-4 text-2xl cursor-pointer rounded text-gray-700 hover:bg-gray-300 " >
                         {list.icon}
-
-                    </div>) : (<div className="p-4 text-2xl cursor-pointer text-gray-900 border-r border-black" >
+                    </div>) : (<div className="p-4 text-2xl cursor-pointer text-black border-r border-black" >
                         {list.iconActive}
-
                     </div>)}
             </NavLink >
         )
@@ -91,10 +75,9 @@ function Nav() {
     const itemUnder = listsUnder.map((list, index) => {
         return (
             <NavLink className={`item_${index + 1}`} to={`${list.itemLink}`} key={index}>
-                {!(location.pathname === list.itemLink) ?
-                    (<div className="p-4 text-2xl cursor-pointer rounded text-gray-900 hover:bg-gray-400 " >
+                {!(location.pathname.includes(list.itemLink)) ?
+                    (<div className="p-4 text-2xl cursor-pointer rounded text-gray-900 hover:bg-gray-300 " >
                         {list.icon}
-
                     </div>) : (<div className="p-4 text-2xl cursor-pointer text-gray-900 border-r border-black" >
                         {list.iconActive}
                     </div>)}
@@ -104,7 +87,6 @@ function Nav() {
     function handleLogOut() {
         logoutUser(dispatch, navigate, accessToken, axiosJWT);
     }
-
     return (
         <>
             <nav className="h-screen flex items-center float-left flex-col border-r border-r-slate-300 justify-between z-50">
@@ -119,7 +101,6 @@ function Nav() {
                     <div className="p-4 text-2xl cursor-pointer rounded text-red-700 hover:bg-gray-400" onClick={handleLogOut}>
                         <AiOutlineLogout />
                     </div>
-
                 </div>
             </nav>
         </>
