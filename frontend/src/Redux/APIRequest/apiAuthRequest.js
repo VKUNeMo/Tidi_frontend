@@ -1,14 +1,14 @@
 import {instance} from "../../createInstance";
 import {
-    registerStart,
-    registerSuccess,
-    registerFail,
-    loginSuccess,
-    loginStart,
     loginFail,
-    logoutSuccess,
+    loginStart,
+    loginSuccess,
+    logoutFail,
     logoutStart,
-    logoutFail
+    logoutSuccess,
+    registerFail,
+    registerStart,
+    registerSuccess
 } from "../Slice/authSlice";
 
 export const registerUser = async (user, dispatch, navigate) => {
@@ -44,5 +44,22 @@ export const logoutUser = async (dispatch, navigate, accessToken, axiosJWT)=>{
     }catch (err){
         console.log(err);
         dispatch(logoutFail());
+    }
+}
+
+export const getInfo = async (idUser) => {
+    try{
+        return instance.get(`/v1/user/info/${idUser}`);
+    }catch(err){
+        console.log(err);
+    }
+}
+
+export const changePassword = async (data, dispatch, axiosJWT) => {
+    try{
+        await axiosJWT.post("/v1/user/change/password", data);
+        dispatch(logoutSuccess());
+    }catch(err){
+        console.log(err);
     }
 }
