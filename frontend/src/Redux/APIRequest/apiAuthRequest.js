@@ -56,10 +56,5 @@ export const getInfo = async (idUser) => {
 }
 
 export const changePassword = async (data, dispatch, axiosJWT) => {
-    try{
-        await axiosJWT.post("/v1/user/change/password", data);
-        dispatch(logoutSuccess());
-    }catch(err){
-        console.log(err);
-    }
+    return await axiosJWT.post("/v1/user/change/password", data);
 }
