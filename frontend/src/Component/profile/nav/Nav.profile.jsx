@@ -13,9 +13,8 @@ function NavProfile() {
             <div className={"flex flex-col ml-8 mt-4"}>
                 <Link to={"me"} className={"text-gray-500 my-3"}><CgProfile/> Profile</Link>
                 <Link to={"detail"} className={"text-gray-500 my-3"}><MdArticle/> My details</Link>
-                {/* eslint-disable-next-line react/jsx-no-undef */}
-                <Link to={"new"} className={"text-gray-500 my-3"}><CgPassword/>  Password</Link>
-                <Link to={"favourite"} className={"text-gray-500 my-3"}><IoPeopleOutline/> Follow</Link>
+                <Link to={"password"} className={"text-gray-500 my-3"}><CgPassword/>  Password</Link>
+                <Link to={"follow"} className={"text-gray-500 my-3"}><IoPeopleOutline/> Follow</Link>
                 <Link to={"storage"} className={"text-gray-500 my-3"}><MdStorage/> Storage</Link>
             </div>
         </nav>

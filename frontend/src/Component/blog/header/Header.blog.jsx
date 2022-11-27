@@ -27,9 +27,7 @@ function HeaderBlog(props) {
             await deleteBlog(dispatch, navigate, accessToken, axiosJWT, blog._id);
         }
     }
-
     const handleStorage = async () => {
-        console.log(blog._id);
         await addStorage(dispatch, accessToken, blog._id, axiosJWT).then(rs => alert(rs.data));
     };
     return (
@@ -44,7 +42,7 @@ function HeaderBlog(props) {
                     props.type === "blog-detail" ?
                         (
                             <div className={"flex flex-row items-center"}>
-                                <Link to={"/"} className={"flex"}>
+                                <Link to={`/profile/${author?._id}`} className={"flex"}>
                                     <img src={author?.avatar} alt="" className={"w-11 h-11 rounded-full border-solid"}/>
                                     <div className={"ml-4 mt-1 flex flex-col justify-between"}>
                                         <p className={"font-semibold"}>

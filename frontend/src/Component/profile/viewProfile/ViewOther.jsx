@@ -1,27 +1,23 @@
-import React, {useState, useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import HeaderBlog from "../../blog/header/Header.blog";
-import {Routes, Route} from "react-router-dom";
+import {Routes, Route, useParams} from "react-router-dom";
 import {FaPlus} from "react-icons/fa";
 import {Link} from "react-router-dom";
 import ViewMyBlog from "../../blog/ViewMyBlog";
-import {useDispatch, useSelector} from "react-redux";
+import {getInfo} from "../../../Redux/APIRequest/apiAuthRequest";
 import BlogProfile from "../blog/BlogProfile";
-import {createAxios} from "../../../createInstance";
-import {getBlogSuccess} from "../../../Redux/Slice/blogSlice";
-import {getAllOwnerBlog} from "../../../Redux/APIRequest/apiBlogRequest";
 
-const ViewProfile = () => {
-    const user = useSelector(state => state.auth.login.currentUser);
-    const fullnameUser = user.firstName + " " + user.lastName;
+const ViewOther = () => {
+    const {idUser} = useParams();
+    const [user, setUser] = useState([]);
+    const [project, setProject] = useState([]);
     const [blog, setBlog] = useState([]);
-    const dispatch = useDispatch();
-    const token = useSelector(state => state.auth.login.token);
-    const refreshToken = token?.refreshToken;
-    const accessToken = token?.accessToken;
-    useEffect(()=>{
-        const axiosJWT = createAxios(user, accessToken, refreshToken, dispatch, getBlogSuccess);
-        getAllOwnerBlog(accessToken, dispatch, axiosJWT).then(data => setBlog(data.data.blogs));
-    }, [accessToken, dispatch, refreshToken, user]);
+    useEffect(() => {
+        getInfo(idUser).then(data => {
+            setUser(data.data.user);
+            setBlog(data.data.blog);
+        });
+    }, [idUser]);
     return (
         <div>
             <HeaderBlog/>
@@ -37,15 +33,15 @@ const ViewProfile = () => {
                                      src={user.avatar} alt=""/>
                                 <div className={"flex flex-row h-full item-center justify-between w-full mt-28 ml-4"}>
                                     <div className={""}>
-                                        <h3 className={"mb-2"}>{fullnameUser}</h3>
+                                        <h3 className={"mb-2"}>{user.firstName + " " + user.lastName}</h3>
                                         <span className={"text-gray-400"}>{user.email}</span>
                                     </div>
                                     <div className={"mr-4"}>
-                                        <Link to={""}
+                                        <span
                                             className={"border-solid py-1 px-2 flex justify-center border-blue-400 text-blue-400 item-center rounded cursor-pointer"}>
                                             <FaPlus/>
-                                            <span className={"ml-2"}>Edit Info</span>
-                                        </Link>
+                                            <span className={"ml-2"}>Follow</span>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -56,20 +52,18 @@ const ViewProfile = () => {
                 </div>
                 <hr/>
                 <div className={"flex flex-row my-2"}>
-
-                    <Link to={"/profile/me/blog"} className={"mx-4"}>
+                    <Link to={`/profile/${user._id}/blog`} className={"mx-4"}>
                         Blog
                     </Link>
-                    <Link to={"/profile/me/blog"} className={"mx-4"}>Project</Link>
+                    <Link to={``} className={"mx-4"}>Project</Link>
                     <Link to={""} className={"mx-4"}>Project</Link>
                     <Link to={""} className={"mx-4"}>Project</Link>
                     <Link to={""} className={"mx-4"}>Project</Link>
-
                 </div>
                 <hr/>
                 <Routes>
                     <Route path={"/*"}>
-                        <Route path={"blog"} element={<BlogProfile user={user} blog={blog}/>}/>
+                        <Route path={"blog"} element={<BlogProfile blog={blog} user={user}/>}/>
                     </Route>
                 </Routes>
             </div>
@@ -77,4 +71,4 @@ const ViewProfile = () => {
     );
 }
 
-export default ViewProfile;
+export default ViewOther;

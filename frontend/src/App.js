@@ -13,6 +13,7 @@ import ViewMyBlog from "./Component/blog/ViewMyBlog";
 import ViewPublic from "./Component/blog/ViewPublic";
 import EditBlog from "./Component/blog/edit/EditBlog";
 import ViewProfile from "./Component/profile/viewProfile/ViewProfile";
+import ViewOther from "./Component/profile/viewProfile/ViewOther";
 
 
 function App() {
@@ -48,10 +49,11 @@ function App() {
                                 <Profile/>
                             </ProtectedRoute>
                         }>
-                            <Route path={"me/*"} element={<ViewProfile/>}>
-                                <Route path={"blog"} element={<ViewProfile/>}/>
-                            </Route>
-                            <Route path={":idUser"} element={<ViewProfile/>}/>
+                            {/*<Route path={"detail"} element={""}/>*/}
+                            {/*<Route path={"me/*"} element={<ViewProfile/>}>*/}
+                            {/*    /!*<Route path={"blog"} element={<ViewProfile/>}/>*!/*/}
+                            {/*</Route>*/}
+                            {/*<Route path={":idUser"} element={<ViewOther/>}/>*/}
                         </Route>
                     </Routes>
                 </div>
