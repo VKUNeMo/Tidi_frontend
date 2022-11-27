@@ -1,11 +1,27 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import HeaderBlog from "../../blog/header/Header.blog";
 import {Routes, Route} from "react-router-dom";
 import {FaPlus} from "react-icons/fa";
 import {Link} from "react-router-dom";
 import ViewMyBlog from "../../blog/ViewMyBlog";
+import {useDispatch, useSelector} from "react-redux";
+import BlogProfile from "../blog/BlogProfile";
+import {createAxios} from "../../../createInstance";
+import {getBlogSuccess} from "../../../Redux/Slice/blogSlice";
+import {getAllOwnerBlog} from "../../../Redux/APIRequest/apiBlogRequest";
 
 const ViewProfile = () => {
+    const user = useSelector(state => state.auth.login.currentUser);
+    const fullnameUser = user.firstName + " " + user.lastName;
+    const [blog, setBlog] = useState([]);
+    const dispatch = useDispatch();
+    const token = useSelector(state => state.auth.login.token);
+    const refreshToken = token?.refreshToken;
+    const accessToken = token?.accessToken;
+    useEffect(()=>{
+        const axiosJWT = createAxios(user, accessToken, refreshToken, dispatch, getBlogSuccess);
+        getAllOwnerBlog(accessToken, dispatch, axiosJWT).then(data => setBlog(data.data.blogs));
+    }, [accessToken, dispatch, refreshToken, user]);
     return (
         <div>
             <HeaderBlog/>
@@ -13,26 +29,29 @@ const ViewProfile = () => {
                 <div className={"flex justify-center mb-8"}>
                     <div className={"flex justify-center w-full"}>
                         <div className={"relative pb-24 w-full"}>
-                            <img className={"w-[100%] min-h-[200px] max-h-[240px] rounded-t"} src="https://khoinguonsangtao.vn/wp-content/uploads/2021/09/anh-bia-facebook-cute-nhat-780x289.jpg" alt=""/>
-                            <div className={"absolute h-fit bottom-[6%] left-1/12 flex flex-row justify-between"}>
-                                <img className={"w-[12vw] h-[12vw] rounded-full border-4 border-white border-solid"} src="https://znews-photo.zingcdn.me/w660/Uploaded/qhj_yvobvhfwbv/2018_07_18/Nguyen_Huy_Binh1.jpg" alt=""/>
+                            <img className={"w-[100%] min-h-[200px] max-h-[240px] rounded-t"}
+                                 src="https://khoinguonsangtao.vn/wp-content/uploads/2021/09/anh-bia-facebook-cute-nhat-780x289.jpg"
+                                 alt=""/>
+                            <div className={"absolute h-fit bottom-[6%] flex flex-row w-full"}>
+                                <img className={"w-[12vw] h-[12vw] rounded-full border-4 border-white border-solid ml-12"}
+                                     src={user.avatar} alt=""/>
                                 <div className={"flex flex-row h-full item-center justify-between w-full mt-28 ml-4"}>
                                     <div className={""}>
-                                        <h3 className={"mb-2"}>Phạm Minh Trí</h3>
-                                        <span className={"text-gray-400"}>minhtri192035@gmail.com</span>
+                                        <h3 className={"mb-2"}>{fullnameUser}</h3>
+                                        <span className={"text-gray-400"}>{user.email}</span>
                                     </div>
-                                    <div className={"ml-[24vw]"}>
-                                        <span className={"border-solid py-1 px-2 flex justify-center border-blue-400 text-blue-400 item-center rounded cursor-pointer"}>
+                                    <div className={"mr-4"}>
+                                        <Link to={""}
+                                            className={"border-solid py-1 px-2 flex justify-center border-blue-400 text-blue-400 item-center rounded cursor-pointer"}>
                                             <FaPlus/>
-                                            <span className={"ml-2"}>Follow</span>
-                                        </span>
+                                            <span className={"ml-2"}>Edit Info</span>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div>
-
                     </div>
                 </div>
                 <hr/>
@@ -50,7 +69,7 @@ const ViewProfile = () => {
                 <hr/>
                 <Routes>
                     <Route path={"/*"}>
-                        <Route path={"blog"} element={<ViewMyBlog/>}/>
+                        <Route path={"blog"} element={<BlogProfile user={user} blog={blog}/>}/>
                     </Route>
                 </Routes>
             </div>
