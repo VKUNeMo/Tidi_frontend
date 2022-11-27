@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import { AiOutlineProject, AiFillProject } from "react-icons/ai";
 import { HiOutlineUserGroup, HiUserGroup } from "react-icons/hi";
 import { useLocation, NavLink } from "react-router-dom";
@@ -23,7 +23,6 @@ function NavProject() {
             name: "Project",
         },
     ]
-    const [active,setActive] = useState(false);
     const renderList = listFeature.map(function (list, index) {
         return (
             <>
