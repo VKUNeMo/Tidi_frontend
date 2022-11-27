@@ -28,7 +28,7 @@ function ViewMyBlog() {
                     <ul>
                         {data.map(blog => (
                             <li key={blog._id} className={"mx-6 border-solid border-0 border-t-2 border-gray-400 hover:bg-gray-500 min-h-80px"}>
-                                <Link to={`${url.pathname}/../view/${blog._id}`} className={"w-full py-2 mx-2 px-2"}>
+                                <Link to={`/blog/view/${blog._id}`} className={"w-full py-2 mx-2 px-2"}>
                                     <div className={"mx-6"}>
                                         <div className={"flex justify-between w-fit"}>
                                             <div>
@@ -51,14 +51,14 @@ function ViewMyBlog() {
                                         </h2>
                                         <p className={"mb-2"}>{blog.content.blocks[1].data.text}</p>
                                         {blog.status ? (
-                                            <span className={"bg-blue-500 py-1 px-2 rounded"}>
-                                    Public
-                                </span>
-                                        ):(
-                                            <span className={"bg-red-400 py-1 px-2 rounded"}>
-                                    Private
-                                </span>
-                                        )
+                                                <span className={"bg-blue-500 py-1 px-2 rounded"}>
+                                                    Public
+                                                </span>
+                                            ):(
+                                                <span className={"bg-red-400 py-1 px-2 rounded"}>
+                                                    Private
+                                                </span>
+                                            )
                                         }
                                     </div>
                                 </Link>
