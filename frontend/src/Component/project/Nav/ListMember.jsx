@@ -13,24 +13,24 @@ function ListMember() {
             name: "Minh Tri",
         },
     ]
-    function hanldeClick (e,member){
-        e.preventDefault()
-        console.log(member);
+    function hanldeClick(e, member) {
+        e.preventDefault();
+        navigate(`member/${member.id}`);
     }
-    const pro = ListMembers.map(function (member) {
+    const mem = ListMembers.map(function (member) {
         return (
-                <div key= {member.id} className="pl-10 py-2 hover:bg-slate-400" onClick={(e,member)=>hanldeClick(e,member)}>
-                    <div className="inline-block mx-2">
-                        <AiOutlineUser></AiOutlineUser>
-                    </div>
-                    <p className="inline-block "> {member.name}</p>
+            <div key={member.id} className="pl-10 py-2 hover:bg-slate-400" onClick={(e) => hanldeClick(e, member)}>
+                <div className="inline-block mx-2">
+                    <AiOutlineUser></AiOutlineUser>
                 </div>
+                <p className="inline-block "> {member.name}</p>
+            </div>
 
         )
     })
     return (
         <>
-            {pro}
+            {mem}
         </>
 
     )

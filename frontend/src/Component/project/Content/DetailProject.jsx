@@ -12,8 +12,11 @@ function DetailProject() {
                 <div>
                     <input type="text" placeholder="Search" className="w-full p-4 mb-4 border-y-2   focus:outline-0 "></input>
                 </div>
-                <div className="p-4 text-5xl font-bold">
+                <div className="p-4 text-5xl font-bold border-b-2 mb-2">
                     {name}
+                </div>
+                <div>
+                    
                 </div>
             </div>
         </>
