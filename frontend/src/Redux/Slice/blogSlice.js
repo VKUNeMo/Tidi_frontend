@@ -39,7 +39,6 @@ const blogSlice = createSlice({
             state.init.isFetching = false;
             state.init.success = true;
             state.init.error = false;
-            state.init.msg = action.payload;
             state.init.blogCurrent = action.payload;
         },
         getBlogFail: (state, action) => {
