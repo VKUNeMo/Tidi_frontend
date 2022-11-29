@@ -16,9 +16,10 @@ function Detail() {
     const accessToken = token?.accessToken;
     const user = useSelector(state => state.auth.login.currentUser);
     const [data, setData] = useState([]);
-    useEffect(()=>{
+    useEffect(() => {
         const axiosJWT = createAxios(user, accessToken, refreshToken, dispatch, getBlogSuccess);
         getDetailBlog(dispatch, axiosJWT, idBlog).then(raw => {
+            console.log(raw);
             const data = raw.data.blog.content;
             setData(raw.data.blog);
             editor.current = config(true, 'view-detail-blog', data);
