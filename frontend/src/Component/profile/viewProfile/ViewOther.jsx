@@ -4,7 +4,7 @@ import {Routes, Route, useParams} from "react-router-dom";
 import {FaPlus} from "react-icons/fa";
 import {Link} from "react-router-dom";
 import ViewMyBlog from "../../blog/ViewMyBlog";
-import {getInfo} from "../../../Redux/APIRequest/apiAuthRequest";
+import {getInfo} from "../../../Redux/APIRequest/apiUserRequest";
 import BlogProfile from "../blog/BlogProfile";
 
 const ViewOther = () => {
