@@ -7,6 +7,7 @@ import {getBlogSuccess} from "../../../Redux/Slice/blogSlice";
 import {addStorage, deleteBlog} from "../../../Redux/APIRequest/apiBlogRequest";
 import {MdPlaylistAdd, MdStorage} from "react-icons/md";
 import {CiShare1} from "react-icons/ci";
+import {toast, ToastContainer} from "react-toastify";
 
 function HeaderBlog(props) {
     const [key, setKey] = useState('');
@@ -27,8 +28,8 @@ function HeaderBlog(props) {
             await deleteBlog(dispatch, navigate, accessToken, axiosJWT, blog._id);
         }
     }
-    const handleStorage = async () => {
-        await addStorage(dispatch, accessToken, blog._id, axiosJWT).then(rs => alert(rs.data));
+    const handleStorage = () => {
+        addStorage(dispatch, accessToken, blog._id, axiosJWT).then(rs => toast.success(rs.data, {autoClose: 1000})).catch(err => console.log(err));
     };
     return (
         <div

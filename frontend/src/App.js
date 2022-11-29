@@ -14,6 +14,7 @@ import ViewPublic from "./Component/blog/ViewPublic";
 import EditBlog from "./Component/blog/edit/EditBlog";
 import ViewProfile from "./Component/profile/viewProfile/ViewProfile";
 import ViewOther from "./Component/profile/viewProfile/ViewOther";
+import {ToastContainer} from "react-toastify";
 
 
 function App() {
@@ -26,7 +27,9 @@ function App() {
     };
     return (
         <Router>
+            <ToastContainer/>
             <div id='main-component' className='w-screen h-screen grid'>
+
                 {isLogin && <Nav/>}
                 <div>
                     <Routes>

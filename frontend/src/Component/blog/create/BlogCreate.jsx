@@ -5,6 +5,7 @@ import {addNewBlog} from "../../../Redux/APIRequest/apiBlogRequest";
 import config from "../../editor/config";
 import {createAxios} from "../../../createInstance";
 import {addSuccess} from "../../../Redux/Slice/blogSlice";
+import {toast, ToastContainer} from "react-toastify";
 
 let editor = {isReady: false};
 
@@ -24,10 +25,17 @@ function BlogCreate() {
     const accessToken = token?.accessToken;
     const user = useSelector(state => state.auth.login.currentUser);
     const axiosJWT = createAxios(user, accessToken, refreshToken, dispatch, addSuccess);
-    const handleStore = async (editor)=>{
-        await editor.save().then(async (outputData) => {
+    const handleStore = (editor)=>{
+        if(!title){
+            return toast.error("Tiêu đề không được để trống",{
+                autoClose: 1000,
+            });
+        }
+        editor.save().then((outputData) => {
             const data = {title: title, content: outputData, status: statusBlog};
-            await addNewBlog(accessToken, data, dispatch, navigate, axiosJWT);
+            addNewBlog(accessToken, data, dispatch, navigate, axiosJWT).catch(err => {
+                toast.error(err.response.data);
+            });
         }).catch((error) => {
             console.log('Saving failed: ', error);
         });

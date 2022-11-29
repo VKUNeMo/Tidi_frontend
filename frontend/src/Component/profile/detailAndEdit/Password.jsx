@@ -3,8 +3,8 @@ import HeaderBlog from "../../blog/header/Header.blog";
 import {useDispatch, useSelector} from "react-redux";
 import {createAxios} from "../../../createInstance";
 import {getBlogSuccess} from "../../../Redux/Slice/blogSlice";
-import {ToastContainer, toast} from 'react-toastify';
-import {changePassword} from "../../../Redux/APIRequest/apiAuthRequest";
+import {toast} from 'react-toastify';
+import {changePassword} from "../../../Redux/APIRequest/apiUserRequest";
 import 'react-toastify/dist/ReactToastify.css';
 import {logoutSuccess} from "../../../Redux/Slice/authSlice";
 
@@ -26,13 +26,13 @@ const Password = () => {
             }
             changePassword(data, dispatch, axiosJWT).then((res) => {
                 toast.success("Thay đổi mật khẩu thành công, vui lòng đăng nhập lại",{
-                    position: "bottom-right",
+                    position: "top-right",
                 });
-                setTimeout(() => dispatch(logoutSuccess()),5000);
+                setTimeout(() => dispatch(logoutSuccess()),1000);
             }).catch((err) => {
                 toast.error("🦄 "+err.response.data, {
-                    position: "bottom-right",
-                    autoClose: 4000,
+                    position: "top-right",
+                    autoClose: 1000,
                     hideProgressBar: true,
                     closeOnClick: true,
                     pauseOnHover: true,
@@ -42,14 +42,13 @@ const Password = () => {
             });
         } else {
             toast.warn("Password is not match",{
-                position: "bottom-right"
+                position: "top-right"
             });
         }
     }
     return (
         <div>
             <HeaderBlog/>
-            <ToastContainer/>
             <div className={"my-4 mx-4"}>
                 <h1 className={"float-left"}>Change password</h1>
                 <div className={"flex flex-col justify-center items-center w-full"}>
