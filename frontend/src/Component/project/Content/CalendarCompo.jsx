@@ -1,12 +1,12 @@
 import React from "react";
 
 
-function CalendarCompo({ name }) {
-    console.log(name);
+function CalendarCompo({ data }) {
+    console.log(data);
     return (
         <>
             <div className="h-full w-4/5">
-                calendarComCalendarCompo day 1 of {name}
+                calendarComCalendarCompo day 1 of 
             </div>
         </>
     )

@@ -11,7 +11,7 @@ function Project()
             <NavProject ></NavProject>
             <Routes>
                 <Route path={"/*"}>
-                    <Route path={"project/:name"} element={<DetailProject/>} />
+                    <Route path={"project/:id"} element={<DetailProject/>} />
                 </Route>
             </Routes>
         </>

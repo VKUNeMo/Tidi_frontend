@@ -5,25 +5,27 @@ function Todo({ name }) {
     function Kanban({ heading, taskList }) {
         return (
             <div className="h-full cursor-pointer">
-                <div className="text-center font-bold text-xl">
+                <div className="text-center font-semibold text-2xl">
                     {heading}
                 </div>
                 <div>
                     {taskList.map(function (task) {
                         return <>
                             <div className="flex flex-col p-2 m-2 rounded border">
-                                <div className="font-semibold">
+                                <div className="font-semibold text-xl ">
                                     {task.name}
                                 </div>
                                 <div>
                                     {task.des}
+                                </div>
+                                <div className="text-center mt-4">
                                     {task.creatAt}
                                 </div>
                             </div>
                         </>
                     })}
                 </div>
-                <div className="flex flex-row bg-blue-300 rounded m-2 p-2 justify-center  ">
+                <div className="flex flex-row bg-blue-400 rounded m-2 p-2 justify-center  ">
                     <div className="my-auto ">
                         <GrAdd></GrAdd>
                     </div>
