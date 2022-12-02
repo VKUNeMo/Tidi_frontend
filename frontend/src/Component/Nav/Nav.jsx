@@ -4,10 +4,9 @@ import { AiOutlineFile, AiOutlineLogout, AiOutlineStar, AiOutlineUser, AiFillSta
 import { FaNewspaper, FaUserAlt } from "react-icons/fa";
 import { logoutUser } from "../../Redux/APIRequest/apiAuthRequest";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, NavLink, useLocation } from "react-router-dom";
+import { NavLink, useNavigate,useLocation } from "react-router-dom";
 import { createAxios } from "../../createInstance";
 import { logoutSuccess } from "../../Redux/Slice/authSlice";
-
 function Nav() {
 
     const dispatch = useDispatch();
@@ -17,6 +16,11 @@ function Nav() {
     const accessToken = token?.accessToken;
     const user = useSelector(state => state.auth.login.currentUser);
     const axiosJWT = createAxios(user, accessToken, refreshToken, dispatch, logoutSuccess);
+    console.log(accessToken);
+
+    function handleLogOut() {
+        logoutUser(dispatch, navigate, accessToken, axiosJWT);
+    }
 
     const listsTop = [
         {
@@ -84,9 +88,7 @@ function Nav() {
             </NavLink >
         )
     })
-    function handleLogOut() {
-        logoutUser(dispatch, navigate, accessToken, axiosJWT);
-    }
+
     return (
         <>
             <nav className="h-screen flex items-center float-left flex-col border-r border-r-slate-300 justify-between z-50">
