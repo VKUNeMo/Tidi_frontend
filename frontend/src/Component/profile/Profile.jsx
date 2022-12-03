@@ -5,6 +5,7 @@ import ViewProfile from "./viewProfile/ViewProfile";
 import ViewOther from "./viewProfile/ViewOther";
 import DetailProfile from "./detailAndEdit/DetailProfile";
 import Password from "./detailAndEdit/Password";
+import Avatar from "./avatar/Avatar";
 
 const Profile = () => {
     return (
@@ -18,6 +19,7 @@ const Profile = () => {
                         <Route path={"follow"} element={""}/>
                         <Route path={"me/*"} element={<ViewProfile/>}/>
                         <Route path={":idUser/*"} element={<ViewOther/>}/>
+                        <Route path={"avatar"} element={<Avatar/>}/>
                     </Route>
                 </Routes>
             </div>
