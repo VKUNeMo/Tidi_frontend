@@ -5,6 +5,7 @@ import {getBlogSuccess} from "../../../Redux/Slice/blogSlice";
 import {getStorageBlog} from "../../../Redux/APIRequest/apiBlogRequest";
 import {Link, useLocation} from "react-router-dom";
 import moment from "moment";
+import HeaderBlog from "../header/Header.blog";
 
 const Storage = () => {
     const [data, setData] = useState([]);
@@ -20,9 +21,9 @@ const Storage = () => {
     const url = useLocation();
     return (
         <div>
-            {/*<HeaderBlog type={"search"}/>*/}
+            <HeaderBlog type={"search"}/>
             <div className={"mt-4"}>
-                <h1 className={"mb-6 mx-6"}>Storage</h1>
+                <h1 className={"mb-6 mx-6"}>Favourite</h1>
                 {!data ? (
                     <p>Bạn chưa lưu một bài viết nào. <Link to={"/blog/article"} className={"text-blue-400"}>Tìm bài
                         viết</Link> vào lưu nó vào đây nào</p>
