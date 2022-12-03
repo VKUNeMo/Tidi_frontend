@@ -23,11 +23,12 @@ const EditBlog = () => {
     const axiosJWT = createAxios(user, accessToken, refreshToken, dispatch, getBlogSuccess);
     useEffect(() => {
         getDetailBlog(dispatch, axiosJWT, idBlog).then(raw => {
-            const data = raw.data.blog.content;
-            setData(raw.data.blog);
-            setTitle(raw.data.blog.title);
-            ref.current = raw.data.blog.title;
-            setStatusBlog(raw.data.blog.status);
+            console.log(raw);
+            const data = raw.data.data.blog.content;
+            setData(raw.data.data.blog);
+            setTitle(raw.data.data.blog.title);
+            ref.current = raw.data.data.blog.title;
+            setStatusBlog(raw.data.data.blog.status);
             editor = config(false, 'view-detail-blog', data);
         });
     }, [accessToken, dispatch, idBlog, refreshToken, user]);
