@@ -29,7 +29,7 @@ const ViewOther = () => {
                                  src="https://khoinguonsangtao.vn/wp-content/uploads/2021/09/anh-bia-facebook-cute-nhat-780x289.jpg"
                                  alt=""/>
                             <div className={"absolute h-fit bottom-[6%] flex flex-row w-full"}>
-                                <img className={"w-[12vw] h-[12vw] rounded-full border-4 border-white border-solid ml-12"}
+                                <img className={"w-[165px] h-[165px] rounded-full border-4 border-white border-solid ml-12"}
                                      src={user.avatar} alt=""/>
                                 <div className={"flex flex-row h-full item-center justify-between w-full mt-28 ml-4"}>
                                     <div className={""}>
@@ -56,9 +56,9 @@ const ViewOther = () => {
                         Blog
                     </Link>
                     <Link to={``} className={"mx-4"}>Project</Link>
-                    <Link to={""} className={"mx-4"}>Project</Link>
-                    <Link to={""} className={"mx-4"}>Project</Link>
-                    <Link to={""} className={"mx-4"}>Project</Link>
+                    <Link to={""} className={"mx-4"}>Follower</Link>
+                    <Link to={""} className={"mx-4"}>Follow</Link>
+                    <Link to={""} className={"mx-4"}>Bio</Link>
                 </div>
                 <hr/>
                 <Routes>
