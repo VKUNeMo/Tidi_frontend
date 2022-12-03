@@ -27,12 +27,15 @@ import {BsFacebook, BsFillImageFill, BsMessenger, BsThreeDots} from "react-icons
 import EmojiPicker from "emoji-picker-react";
 import {IoLocationSharp} from "react-icons/io5";
 import {RiAttachmentLine} from "react-icons/ri";
+import Loading from "../../loading/Loading";
+
 
 function HeaderBlog(props) {
     const [key, setKey] = useState('');
     const [shareToggle, setShareToggle] = useState(false);
     const [commentToggle, setCommentToggle] = useState(false);
     const [iconToggle, setIconToggle] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const [allComment, setComments] = useState([]);
     const [comment, setComment] = useState('');
     const checkSave = useSelector(state => state.blog.init.check);
@@ -54,7 +57,10 @@ function HeaderBlog(props) {
     }
     useEffect(() => {
         if(blog?._id){
-            getComment(blog?._id, axiosJWT).then(r => setComments(r.data));
+            getComment(blog?._id, axiosJWT).then(r => {
+                setComments(r.data);
+                setIsLoading(false);
+            });
         }
     }, [blog, allComment]);
 
@@ -73,7 +79,8 @@ function HeaderBlog(props) {
         }).catch(err => toast.error(err.data.message, {position: "bottom-right", autoClose: 1500}));
     }
 
-    const handleSendComment = () => {
+    const handleSendComment = (e) => {
+        e.preventDefault();
         if (comment) {
             addComment(blog._id, axiosJWT, {idUser: user._id, content: comment}).then(r => {
                 toast.success("Post comment successfully", {autoClose: 1000, position: 'bottom-right'});
@@ -235,9 +242,6 @@ function HeaderBlog(props) {
                                     <div
                                         className="relative bg-white rounded-lg shadow  w-[50%] min-w-[350px] h-full flex flex-col overflow-x-hidden overflow-y-auto"
                                         onClick={(e) => temp(e)}>
-                                        {/*<div>*/}
-                                        {/*    */}
-                                        {/*</div>*/}
                                         <div className={"mx-8"}>
                                             <ul className={""}>
                                                 <li className={"flex my-4"}>
@@ -246,8 +250,7 @@ function HeaderBlog(props) {
                                                              className={"w-12 h-12 rounded-full"} alt=""/>
                                                     </div>
                                                     <div className={"bg-white mb-8 rounded ml-2 w-full"}>
-                                                        <form action="#">
-                                                            {/*<textarea type="text" onChange={e=> setComment(e.target.value)}/>*/}
+                                                        <form>
                                                             <div
                                                                 className="w-full mb-4 border border-gray-200 rounded-lg bg-gray-200  dark:border-gray-600">
                                                                 <div
@@ -262,7 +265,7 @@ function HeaderBlog(props) {
                                                                 </div>
                                                                 <div
                                                                     className="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
-                                                                    <button type="submit" onClick={handleSendComment}
+                                                                    <button type="submit" onClick={e=>handleSendComment(e)}
                                                                             className="inline-flex border-0 out items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">
                                                                         Post comment
                                                                     </button>
@@ -293,24 +296,29 @@ function HeaderBlog(props) {
                                                         {/*<EmojiPicker/>*/}
                                                     </div>
                                                 </li>
+                                                <p className={"text-gray-400 text-sm mb-2"}>This post have {allComment.length} comments</p>
                                                 <hr/>
-                                                {allComment.map(each => (
-                                                    <li key={each._id} className={"flex my-4"}>
-                                                        <div>
-                                                            <img src={each.idUser.avatar}
-                                                                 className={"w-12 h-12 rounded-full"} alt=""/>
-                                                        </div>
-                                                        <div className={"bg-gray-200 py-1 px-2 w-full mx-2 rounded-xl"}>
-                                                            <div className={"flex justify-between"}>
-                                                                <h4>{each.idUser.firstName + ' ' + each.idUser.lastName}</h4>
-                                                                {each.idUser._id === user._id ? <span className={"mr-2"}
-                                                                                                      onClick={() => handleDeleteComment(each._id)}>Xoá</span> : ''}
-                                                                {/*<span className={"mr-2 cursor-pointer rounded-full hover:bg-gray-500 px-2 pt-1 "}><BsThreeDots/></span>*/}
-                                                            </div>
-                                                            <p className={"my-3"}>{each.content}</p>
-                                                        </div>
-                                                    </li>
-                                                ))}
+                                                {isLoading ? <Loading/> : (
+                                                    <>
+                                                        {allComment.map(each => (
+                                                            <li key={each._id} className={"flex my-4"}>
+                                                                <div>
+                                                                    <img src={each.idUser.avatar}
+                                                                         className={"w-12 h-12 rounded-full"} alt=""/>
+                                                                </div>
+                                                                <div className={"bg-gray-200 py-1 px-2 w-full mx-2 rounded-xl"}>
+                                                                    <div className={"flex justify-between"}>
+                                                                        <h4>{each.idUser.firstName + ' ' + each.idUser.lastName}</h4>
+                                                                        {each.idUser._id === user._id ? <span className={"mr-2"}
+                                                                                                              onClick={() => handleDeleteComment(each._id)}>Xoá</span> : ''}
+                                                                        {/*<span className={"mr-2 cursor-pointer rounded-full hover:bg-gray-500 px-2 pt-1 "}><BsThreeDots/></span>*/}
+                                                                    </div>
+                                                                    <p className={"my-3"}>{each.content}</p>
+                                                                </div>
+                                                            </li>
+                                                        ))}
+                                                    </>
+                                                )}
                                             </ul>
                                         </div>
 

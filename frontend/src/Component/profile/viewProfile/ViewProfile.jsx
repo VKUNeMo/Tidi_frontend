@@ -12,6 +12,7 @@ import {getAllOwnerBlog} from "../../../Redux/APIRequest/apiBlogRequest";
 
 const ViewProfile = () => {
     const user = useSelector(state => state.auth.login.currentUser);
+    const [isLoading, setIsLoading] = useState(true);
     const fullnameUser = user.firstName + " " + user.lastName;
     const [blog, setBlog] = useState([]);
     const dispatch = useDispatch();
@@ -20,7 +21,10 @@ const ViewProfile = () => {
     const accessToken = token?.accessToken;
     useEffect(()=>{
         const axiosJWT = createAxios(user, accessToken, refreshToken, dispatch, getBlogSuccess);
-        getAllOwnerBlog(accessToken, dispatch, axiosJWT).then(data => setBlog(data.data.blogs));
+        getAllOwnerBlog(accessToken, dispatch, axiosJWT).then(data => {
+            setBlog(data.data.blogs);
+            setIsLoading(false);
+        });
     }, [accessToken, dispatch, refreshToken, user]);
     return (
         <div>
@@ -69,7 +73,7 @@ const ViewProfile = () => {
                 <hr/>
                 <Routes>
                     <Route path={"/*"}>
-                        <Route path={"blog"} element={<BlogProfile user={user} blog={blog}/>}/>
+                        <Route path={"blog"} element={<BlogProfile user={user} blog={blog} loading={isLoading}/>}/>
                     </Route>
                 </Routes>
             </div>
