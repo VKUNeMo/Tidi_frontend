@@ -15,3 +15,7 @@ export const changePassword = async (data, dispatch, axiosJWT) => {
 export const changeAvatar = async (data, dispatch, axiosJWT) => {
     return await axiosJWT.post("/v1/user/change/avatar", data);
 }
+
+export const changeInfo = async (data, axiosJWT, idUser) => {
+    return await axiosJWT.post(`/v1/user/edit/${idUser}`, data);
+}
