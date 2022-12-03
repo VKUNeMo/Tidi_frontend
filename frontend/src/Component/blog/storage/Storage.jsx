@@ -62,7 +62,7 @@ const Storage = () => {
                                                 <h2 className={"mb-2"}>
                                                     {blog.idBlog.title}
                                                 </h2>
-                                                {/*<p>{blog.content.blocks[1].data.text}</p>*/}
+                                                <p>{blog.idBlog.content.blocks[1].data.text}</p>
                                             </div>
                                         </Link>
                                     </li>
