@@ -39,8 +39,7 @@ const getDetailBlog = async (dispatch, axiosJWT, idBlog) => {
     try {
         const data = await axiosJWT.get(`/v1/user/blogs/${idBlog}`);
         const checkStorage = await axiosJWT.get(`/v1/user/blogs/storage/check/${idBlog}`);
-        dispatch(getBlogSuccess({data, checkStorage}));
-        return data;
+        return {data, checkStorage};
     } catch (err) {
         dispatch(getBlogFail("Lỗi"));
     }
@@ -84,11 +83,7 @@ const addStorage = async (dispatch, accessToken, idBlog, axiosJWT) => {
 }
 
 const deleteStorage = async (dispatch, accessToken, idBlog, axiosJWT) => {
-    try{
-        await axiosJWT.post("/v1/user/blogs/storage/delete/"+idBlog);
-    }catch(err){
-        console.log(err);
-    }
+    return await axiosJWT.delete("/v1/user/blogs/storage/delete/"+idBlog);
 }
 
 export {addNewBlog, getAllOwnerBlog, getAllPublicBlog, getDetailBlog, editBlog, deleteBlog, getStorageBlog, addStorage, deleteStorage};
