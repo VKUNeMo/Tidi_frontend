@@ -28,7 +28,7 @@ function App() {
     return (
         <Router>
             <ToastContainer/>
-            <div id='main-component' className='w-screen h-screen grid'>
+            <div id='main-component' className='w-screen h-screen grid overflow-x-hidden'>
 
                 {isLogin && <Nav/>}
                 <div>
@@ -58,6 +58,7 @@ function App() {
                             {/*</Route>*/}
                             {/*<Route path={":idUser"} element={<ViewOther/>}/>*/}
                         </Route>
+
                     </Routes>
                 </div>
             </div>
