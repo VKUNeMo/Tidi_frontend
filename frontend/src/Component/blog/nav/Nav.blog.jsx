@@ -23,8 +23,8 @@ function NavBlog() {
                 <Link to={"article"} className={"text-gray-500 my-3"}><MdArticle/> New Articles</Link>
                 <Link to={"my-blog"} className={"text-gray-500 my-3"}><AiOutlineUser/> My Blog</Link>
                 <Link to={"new"} className={"text-gray-500 my-3"}><BsPencilSquare/>  New</Link>
-                <Link to={"favourite"} className={"text-gray-500 my-3"}><MdFavoriteBorder/> Favourite</Link>
-                <Link to={"storage"} className={"text-gray-500 my-3"}><MdStorage/> Storage</Link>
+                <Link to={"storage"} className={"text-gray-500 my-3"}><MdFavoriteBorder/> Favourite</Link>
+                {/*<Link to={"storage"} className={"text-gray-500 my-3"}><MdStorage/> Storage</Link>*/}
             </div>
         </nav>
     )

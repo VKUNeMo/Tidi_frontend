@@ -8,7 +8,8 @@ const blogSlice = createSlice({
             success: false,
             error: false,
             blogCurrent: [],
-            msg: ""
+            msg: "",
+            check: "",
         }
     },
 
@@ -39,13 +40,15 @@ const blogSlice = createSlice({
             state.init.isFetching = false;
             state.init.success = true;
             state.init.error = false;
-            state.init.msg = action.payload;
             state.init.blogCurrent = action.payload;
         },
         getBlogFail: (state, action) => {
             state.init.success = false;
             state.init.error = true;
             state.init.msg = action.payload;
+        },
+        checkStorage: (state, action) => {
+            state.init.check = action.payload;
         },
     }
 });
@@ -55,7 +58,8 @@ export const {
     addFailed,
     getBlogSuccess,
     getBlogFail,
-    getBlogStart
+    getBlogStart,
+    checkStorage
 } = blogSlice.actions;
 
 export default blogSlice.reducer;

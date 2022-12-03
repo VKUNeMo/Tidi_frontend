@@ -1,7 +1,8 @@
 import {addFailed, addStart, addSuccess, getBlogFail, getBlogStart, getBlogSuccess} from "../Slice/blogSlice";
 import {instance} from "../../createInstance";
+import {isBlock} from "@udecode/plate";
 
-const addNewBlog = async (accessToken, data, dispatch, navigate, axiosJWT) => {
+export const addNewBlog = async (accessToken, data, dispatch, navigate, axiosJWT) => {
     dispatch(addStart());
     try {
         await axiosJWT.post("/v1/user/blogs/store", data);
@@ -12,7 +13,7 @@ const addNewBlog = async (accessToken, data, dispatch, navigate, axiosJWT) => {
     }
 }
 
-const getAllOwnerBlog = async (accessToken, dispatch, axiosJWT) => {
+export const getAllOwnerBlog = async (accessToken, dispatch, axiosJWT) => {
     dispatch(getBlogStart());
     try {
         const data = await axiosJWT.get("/v1/user/blogs/all");
@@ -23,7 +24,7 @@ const getAllOwnerBlog = async (accessToken, dispatch, axiosJWT) => {
     }
 }
 
-const getAllPublicBlog = async (dispatch, axiosJWT) => {
+export const getAllPublicBlog = async (dispatch, axiosJWT) => {
     dispatch(getBlogStart());
     try {
         const data = await instance.get("/v1/user/blogs/public/all");
@@ -34,18 +35,18 @@ const getAllPublicBlog = async (dispatch, axiosJWT) => {
     }
 }
 
-const getDetailBlog = async (dispatch, axiosJWT, idBlog) => {
+export const getDetailBlog = async (dispatch, axiosJWT, idBlog) => {
     dispatch(getBlogStart());
     try {
-        const data = await axiosJWT.get(`/v1/user/blogs/${idBlog}`, '');
-        dispatch(getBlogSuccess());
-        return data;
+        const data = await axiosJWT.get(`/v1/user/blogs/${idBlog}`);
+        const checkStorage = await axiosJWT.get(`/v1/user/blogs/storage/check/${idBlog}`);
+        return {data, checkStorage};
     } catch (err) {
         dispatch(getBlogFail("Lỗi"));
     }
 }
 
-const editBlog = async (dispatch, navigate, accessToken, axiosJWT, idBlog, data) => {
+export const editBlog = async (dispatch, navigate, accessToken, axiosJWT, idBlog, data) => {
     try {
         await axiosJWT.post(`/v1/user/blogs/edit/${idBlog}`, data);
         navigate("/blog/my-blog");
@@ -54,7 +55,7 @@ const editBlog = async (dispatch, navigate, accessToken, axiosJWT, idBlog, data)
     }
 }
 
-const deleteBlog = async (dispatch, navigate, accessToken, axiosJWT, idBlog) => {
+export const deleteBlog = async (dispatch, navigate, accessToken, axiosJWT, idBlog) => {
     try {
         await axiosJWT.delete(`/v1/user/blogs/delete/${idBlog}`);
         navigate("/blog/my-blog");
@@ -63,7 +64,7 @@ const deleteBlog = async (dispatch, navigate, accessToken, axiosJWT, idBlog) => 
     }
 }
 
-const getStorageBlog = async (dispatch, accessToken, axiosJWT) => {
+export const getStorageBlog = async (dispatch, accessToken, axiosJWT) => {
     try {
         return await axiosJWT.get("/v1/user/blogs/storage/all");
     } catch (err) {
@@ -71,21 +72,23 @@ const getStorageBlog = async (dispatch, accessToken, axiosJWT) => {
     }
 }
 
-const addStorage = async (dispatch, accessToken, idBlog, axiosJWT) => {
-    try{
-        const data = {idBlog: idBlog}
-        return await axiosJWT.post("/v1/user/blogs/storage/add", data);
-    }catch(err){
-        console.log(err);
-    }
+export const addStorage = async (dispatch, accessToken, idBlog, axiosJWT) => {
+    const data = {idBlog: idBlog}
+    return await axiosJWT.post("/v1/user/blogs/storage/add", data);
 }
 
-const deleteStorage = async (dispatch, accessToken, idBlog, axiosJWT) => {
-    try{
-        await axiosJWT.post("/v1/user/blogs/storage/delete/"+idBlog);
-    }catch(err){
-        console.log(err);
-    }
+export const deleteStorage = async (dispatch, accessToken, idBlog, axiosJWT) => {
+    return await axiosJWT.delete("/v1/user/blogs/storage/delete/"+idBlog);
 }
 
-export {addNewBlog, getAllOwnerBlog, getAllPublicBlog, getDetailBlog, editBlog, deleteBlog, getStorageBlog, addStorage, deleteStorage};
+export const getComment = async (idBlog, axiosJWT) => {
+    return await axiosJWT.get(`/v1/user/blogs/comment/${idBlog}`);
+}
+
+export const addComment = async (idBlog, axiosJWT, data) => {
+    return await axiosJWT.post(`/v1/user/comment/add/${idBlog}`, data);
+}
+
+export const deleteComment = async (idComment, axiosJWT) => {
+    return await axiosJWT.delete(`/v1/user/comment/${idComment}`);
+}
