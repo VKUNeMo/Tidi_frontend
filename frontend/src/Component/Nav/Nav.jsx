@@ -49,13 +49,6 @@ function Nav() {
         }
     ]
     const listsUnder = [
-
-        {
-            icon: <AiOutlineSetting />,
-            iconActive: <AiFillSetting />,
-            item: "setting :(",
-            itemLink: "/setting",
-        },
         {
             icon: <AiOutlineUser />,
             iconActive: <FaUserAlt />,

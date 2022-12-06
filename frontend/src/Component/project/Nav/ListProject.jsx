@@ -7,7 +7,6 @@ import { getProjectSuccess } from "../../../Redux/Slice/projectSlice";
 import { getAllOwnerProject } from "../../../Redux/APIRequest/apiProjectRequest";
 function ListProject() {
     const navigate = useNavigate();
-
     const [data, setData] = useState([]);
     const dispatch = useDispatch();
     const token = useSelector(state => state.auth.login.token);
@@ -18,7 +17,6 @@ function ListProject() {
     useEffect(() => {
         const axiosJWT = createAxios(user, accessToken, refreshToken, dispatch, getProjectSuccess);
         getAllOwnerProject(accessToken, dispatch, axiosJWT).then(raw => setData(raw.data));
-
     }, [accessToken, dispatch, refreshToken, user]);
     console.log(data);
 
@@ -30,7 +28,7 @@ function ListProject() {
 
     return (
         <>
-            {data.map(function (proo) {
+            { data.length ? (data.map(function (proo) {
 
                 return (
                     <div key={proo.name} className="pl-10 py-2 hover:bg-slate-400" onClick={(e) => hanldeClick(e, proo)}>
@@ -40,7 +38,7 @@ function ListProject() {
                         <p className="inline-block "> {proo.idProject.title}</p>
                     </div>
                 )
-            })}
+            })): (<div></div>) }
         </>
 
     )

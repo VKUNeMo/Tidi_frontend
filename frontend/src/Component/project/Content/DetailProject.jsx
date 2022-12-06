@@ -8,6 +8,7 @@ import { getProjectSuccess } from "../../../Redux/Slice/projectSlice";
 import { getDetailProject } from "../../../Redux/APIRequest/apiProjectRequest";
 import ScheduleCompo from "./ScheduleCompo";
 import CalendarCompo from "./CalendarCompo";
+import Loading from "../../loading/Loading"
 import Todo from "./Todo";
 import { GrAdd } from "react-icons/gr";
 import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai"
@@ -20,13 +21,14 @@ function DetailProject() {
     const accessToken = token?.accessToken;
     const user = useSelector(state => state.auth.login.currentUser);
     const [data, setData] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
     useEffect(() => {
         const axiosJWT = createAxios(user, accessToken, refreshToken, dispatch, getProjectSuccess);
         getDetailProject(dispatch, axiosJWT, id).then(raw => {
-            setData(raw.data[0])
+            setData(raw.data[0].idProject)
+            setIsLoading(false);
         });
     }, [accessToken, dispatch, id, refreshToken, user]);
-    console.log(data);
 
     const features = [
         {
@@ -40,14 +42,6 @@ function DetailProject() {
         {
             name: "Todo List",
             component: <Todo data={data} />,
-        },
-        {
-            name: "Calendar",
-            component: <CalendarCompo data={data} />,
-        },
-        {
-            name: "Calendar",
-            component: <CalendarCompo data={data} />,
         },
     ]
     const [active, setActive] = useState(features[0].component);
@@ -66,11 +60,11 @@ function DetailProject() {
         )
     })
     function handleDelete() {
-
+        console.log(data);
     }
     return (
         <>
-            <div className="h-full w-4/5">
+            {isLoading ? <Loading /> : (<div className="h-full w-4/5">
                 <div className="w-full flex flex-row border-y-2 justify-between p-4">
                     <div className="w-1/2 ">
                         <input type="text" placeholder="Search" value={key} onChange={e => setKey(e.target.value)} className="w-full rounded-md  p-4 bg-slate-200 focus:outline-0 "></input>
@@ -84,12 +78,12 @@ function DetailProject() {
                 </div>
 
                 <div className="p-4 border-b-2 flex flex-row justify-between align-center m-auto">
-                    <div className=" text-5xl font-bold ">
-                        {data.idProject.title}
+                    <div className=" text-5xl font-bold " >
+                       {data.title}
                     </div>
                     <div className="h-full flex flex-row">
                         <div className="p-4  bg-slate-200 rounded-xl flex mx-2 cursor-pointer">
-                            <button onClick={handleDelete}>
+                            <button onClick={handleDelete} >
                                 <AiOutlineEdit></AiOutlineEdit>
                             </button>
                         </div>
@@ -107,6 +101,7 @@ function DetailProject() {
                     {active}
                 </div>
             </div>
+            )}
         </>
     )
 }
