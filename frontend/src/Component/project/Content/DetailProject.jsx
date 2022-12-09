@@ -10,8 +10,9 @@ import ScheduleCompo from "./ScheduleCompo";
 import CalendarCompo from "./CalendarCompo";
 import Loading from "../../loading/Loading"
 import Todo from "./Todo";
-import { GrAdd } from "react-icons/gr";
-import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai"
+import { AiOutlineEdit } from "react-icons/ai"
+import BtnCreate from "../Create/BtnCreate";
+import BtnDelete from "../Delete/BtnDelete";
 function DetailProject() {
     let { id } = useParams();
     const [key, setKey] = useState('');
@@ -62,24 +63,20 @@ function DetailProject() {
     function handleDelete() {
         console.log(data);
     }
+
     return (
         <>
-            {isLoading ? <Loading /> : (<div className="h-full w-4/5">
+            {isLoading ? <Loading /> : (<div className="h-full w-4/5 relative">
                 <div className="w-full flex flex-row border-y-2 justify-between p-4">
                     <div className="w-1/2 ">
                         <input type="text" placeholder="Search" value={key} onChange={e => setKey(e.target.value)} className="w-full rounded-md  p-4 bg-slate-200 focus:outline-0 "></input>
                     </div>
-                    <div className=" p-4 rounded bg-blue-300 flex ">
-                        <div className="m-auto ">
-                            <GrAdd></GrAdd>
-                        </div>
-                        <button className="ml-2">Create New Project</button>
-                    </div>
+                    <BtnCreate></BtnCreate>
                 </div>
 
                 <div className="p-4 border-b-2 flex flex-row justify-between align-center m-auto">
                     <div className=" text-5xl font-bold " >
-                       {data.title}
+                        {data.title}
                     </div>
                     <div className="h-full flex flex-row">
                         <div className="p-4  bg-slate-200 rounded-xl flex mx-2 cursor-pointer">
@@ -88,9 +85,7 @@ function DetailProject() {
                             </button>
                         </div>
                         <div className="p-4  bg-red-500 rounded-xl flex mx-2 cursor-pointer">
-                            <button onClick={handleDelete}>
-                                <AiOutlineDelete></AiOutlineDelete>
-                            </button>
+                            <BtnDelete project ={data}></BtnDelete>
                         </div>
                     </div>
                 </div>

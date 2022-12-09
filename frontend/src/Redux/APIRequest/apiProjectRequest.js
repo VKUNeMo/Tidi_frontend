@@ -6,7 +6,7 @@ const addNewProject = async (accessToken, data, dispatch, navigate, axiosJWT) =>
     try {
         await axiosJWT.post("/v1/user/project/add", data);
         dispatch(addSuccess("Success"));
-        // navigate("/home/project");
+        navigate("/home/project");
     } catch (err) {
         dispatch(addFailed("Failed"));
     }
@@ -54,7 +54,7 @@ const editProject = async (dispatch, navigate, accessToken, axiosJWT, idProject,
     }
 }
 
-const deleteProject = async (dispatch, navigate, accessToken, axiosJWT, idProject) => {
+const deleteProject = async (dispatch, navigate,accessToken, axiosJWT, idProject) => {
     try {
         await axiosJWT.delete(`/v1/user/project/delete/${idProject}`);
         // navigate("/home/project");

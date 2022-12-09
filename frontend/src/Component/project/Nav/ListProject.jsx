@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useCallback } from "react";
 import { useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux";
 import { createAxios } from "../../../createInstance";
@@ -14,11 +14,14 @@ function ListProject() {
     const accessToken = token?.accessToken;
     const user = useSelector(state => state.auth.login.currentUser);
 
-    useEffect(() => {
+    const loadData = useCallback(async () => {
         const axiosJWT = createAxios(user, accessToken, refreshToken, dispatch, getProjectSuccess);
         getAllOwnerProject(accessToken, dispatch, axiosJWT).then(raw => setData(raw.data));
-    }, [accessToken, dispatch, refreshToken, user]);
-    console.log(data);
+    }, [accessToken, dispatch, refreshToken, user])
+
+    useEffect(() => {
+       loadData();
+    }, [loadData]);
 
     function hanldeClick(e, pro) {
         e.preventDefault();
