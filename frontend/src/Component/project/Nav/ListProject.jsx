@@ -1,10 +1,12 @@
-import React, { useState, useEffect,useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux";
 import { createAxios } from "../../../createInstance";
 import { FcDocument } from "react-icons/fc";
 import { getProjectSuccess } from "../../../Redux/Slice/projectSlice";
 import { getAllOwnerProject } from "../../../Redux/APIRequest/apiProjectRequest";
+import Loading from "../../loading/Loading"
+
 function ListProject() {
     const navigate = useNavigate();
     const [data, setData] = useState([]);
@@ -13,6 +15,7 @@ function ListProject() {
     const refreshToken = token?.refreshToken;
     const accessToken = token?.accessToken;
     const user = useSelector(state => state.auth.login.currentUser);
+    const [isLoading, setIsLoading] = useState(true);
 
     const loadData = useCallback(async () => {
         const axiosJWT = createAxios(user, accessToken, refreshToken, dispatch, getProjectSuccess);
@@ -20,7 +23,8 @@ function ListProject() {
     }, [accessToken, dispatch, refreshToken, user])
 
     useEffect(() => {
-       loadData();
+        setIsLoading(false);
+        loadData();
     }, [loadData]);
 
     function hanldeClick(e, pro) {
@@ -31,8 +35,7 @@ function ListProject() {
 
     return (
         <>
-            { data.length ? (data.map(function (proo) {
-
+            {isLoading ? <Loading /> : (data.map(function (proo) {
                 return (
                     <div key={proo.name} className="pl-10 py-2 hover:bg-slate-400" onClick={(e) => hanldeClick(e, proo)}>
                         <div className="inline-block mx-2">
@@ -41,7 +44,7 @@ function ListProject() {
                         <p className="inline-block "> {proo.idProject.title}</p>
                     </div>
                 )
-            })): (<div></div>) }
+            }))}
         </>
 
     )

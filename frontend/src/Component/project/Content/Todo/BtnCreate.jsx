@@ -38,15 +38,15 @@ function BtnCreate() {
     }
     return (
         <>
-            <div className=" p-4 rounded bg-blue-300 flex ">
-                <div className="m-auto ">
+            <div className=" m-2 p-2 rounded bg-blue-300 flex items-center justify-center ">
+                <div className="my-auto">
                     <GrAdd></GrAdd>
                 </div>
-                <button className="ml-2 hidden lg:block" onClick={handleCreate}>Create New Project</button>
+                <button className="ml-2" onClick={handleCreate}>Add</button>
             </div>
             {isComponentVisible &&
                 <div className="fixed top-0 left-0 bottom-0 right-0 z-40 bg-black bg-opacity-30">
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50  bg-white w-1/4 h-auto" ref={ref}>
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50  bg-white w-1/3 h-auto" ref={ref}>
                         <FormCreate handleClick={handleCreate}></FormCreate>
                     </div>
                 </div>

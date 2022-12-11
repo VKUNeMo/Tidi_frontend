@@ -1,5 +1,5 @@
 import React from "react";
-import { GrAdd } from "react-icons/gr"
+import BtnCreate from "../Todo/BtnCreate";
 
 function Todo({ name }) {
     function Kanban({ heading, taskList }) {
@@ -15,22 +15,18 @@ function Todo({ name }) {
                                 <div className="font-semibold text-xl ">
                                     {task.name}
                                 </div>
-                                <div>
+                                <div className=" text-ellipsis hidden md:block">
                                     {task.des}
                                 </div>
-                                <div className="text-center mt-4">
+                                <div className="text-center mt-4 hidden">
                                     {task.creatAt}
                                 </div>
                             </div>
                         </>
                     })}
                 </div>
-                <div className="flex flex-row bg-blue-400 rounded m-2 p-2 justify-center  ">
-                    <div className="my-auto ">
-                        <GrAdd></GrAdd>
-                    </div>
-                    <p className="mx-2 "> Add task</p>
-                </div>
+                    <BtnCreate></BtnCreate>
+              
 
             </div>
         )

@@ -7,9 +7,9 @@ import { createAxios } from "../../../createInstance";
 import { getProjectSuccess } from "../../../Redux/Slice/projectSlice";
 import { getDetailProject } from "../../../Redux/APIRequest/apiProjectRequest";
 import ScheduleCompo from "./ScheduleCompo";
-import CalendarCompo from "./CalendarCompo";
+import Task from "./Task/Task";
 import Loading from "../../loading/Loading"
-import Todo from "./Todo";
+import Todo from "./Todo/Todo";
 import { AiOutlineEdit } from "react-icons/ai"
 import BtnCreate from "../Create/BtnCreate";
 import BtnDelete from "../Delete/BtnDelete";
@@ -37,8 +37,8 @@ function DetailProject() {
             component: <ScheduleCompo id={id} />,
         },
         {
-            name: "Calendar",
-            component: <CalendarCompo data={data} />,
+            name: "Task",
+            component: <Task data={data} />,
         },
         {
             name: "Todo List",
@@ -66,7 +66,7 @@ function DetailProject() {
 
     return (
         <>
-            {isLoading ? <Loading /> : (<div className="h-full w-4/5 relative">
+            {isLoading ? <Loading /> : (<div className="h-screen w-full  relative lg:w-4/5">
                 <div className="w-full flex flex-row border-y-2 justify-between p-4">
                     <div className="w-1/2 ">
                         <input type="text" placeholder="Search" value={key} onChange={e => setKey(e.target.value)} className="w-full rounded-md  p-4 bg-slate-200 focus:outline-0 "></input>
@@ -85,7 +85,7 @@ function DetailProject() {
                             </button>
                         </div>
                         <div className="p-4  bg-red-500 rounded-xl flex mx-2 cursor-pointer">
-                            <BtnDelete project ={data}></BtnDelete>
+                            <BtnDelete project={data}></BtnDelete>
                         </div>
                     </div>
                 </div>

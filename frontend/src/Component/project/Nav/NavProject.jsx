@@ -23,6 +23,7 @@ function NavProject() {
             name: "Project",
         },
     ]
+    //render project+ member
     const renderList = listFeature.map(function (list, index) {
         return (
             <>
@@ -57,7 +58,7 @@ function NavProject() {
         )
     })
     return (
-        <div id="project" className="h-full w-1/5 min-w-fit border-r border-r-gray-200 py-4 ">
+        <div id="project" className="h-screen w-1/5 min-w-fit border-r border-r-gray-200 py-4 hidden lg:block">
             <div className="text-center text-xl p-2">
                 <h1>Tidi.works</h1>
             </div>
