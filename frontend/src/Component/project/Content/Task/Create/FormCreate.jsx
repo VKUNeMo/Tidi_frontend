@@ -7,6 +7,9 @@ import { useDispatch, useSelector } from "react-redux";
 function FormCreate({ id, state, handleClick }) {
     const [title, setTitle] = useState('');
     const [des, setDes] = useState('');
+    const [dayStart, setDayStart] = useState({ dayStart: new Date() });
+    const [dayEnd, setDayEnd] = useState({ dayEnd: new Date() });
+
     const dispatch = useDispatch();
     const token = useSelector(state => state.auth.login.token);
     const refreshToken = token?.refreshToken;
@@ -15,7 +18,8 @@ function FormCreate({ id, state, handleClick }) {
     const axiosJWT = createAxios(user, accessToken, refreshToken, dispatch, getProjectSuccess);
     function handleAdd() {
         handleClick();
-        const data = { idProject: id, title: title, content: des, state: state };
+        console.log(dayStart);
+        const data = { idProject: id, title: title, description: des, dayStart: dayStart, dayEnd: dayEnd, state: state };
         addNewTask(accessToken, data, dispatch, id, axiosJWT)
     }
     return (
@@ -32,10 +36,13 @@ function FormCreate({ id, state, handleClick }) {
                         <textarea type="text" className="p-4  border-b-slate-300 border-b focus: outline-none " value={des} onChange={e => setDes(e.target.value)} placeholder="Description..."></textarea>
                     </div>
                     <div className=" my-2 flex flex-col">
-                        <label>Description</label>
-                        <textarea type="text" className="p-4  border-b-slate-300 border-b focus: outline-none " value={des} onChange={e => setDes(e.target.value)} placeholder="Description..."></textarea>
+                        <label>Day start</label>
+                        <input type="date" className="p-4  border-b-slate-300 border-b focus: outline-none " value={dayStart} onChange={e => setDayStart(e.target.value)} placeholder="Date..."></input>
                     </div>
-                    
+                    <div className=" my-2 flex flex-col">
+                        <label>Day End</label>
+                        <input type="date" className="p-4  border-b-slate-300 border-b focus: outline-none " value={dayEnd} onChange={e => setDayEnd(e.target.value)} placeholder="Date..."></input>
+                    </div>
                     <div className=" flex justify-end">
                         <p onClick={handleAdd} className="mx-2 p-4 w-20 cursor-pointer text-center  rounded-lg bg-blue-300 border border-blue-300">Add</p>
                         <p onClick={handleClick} className="mx-2 p-4 w-20 cursor-pointer text-center rounded-lg border border-blue-300">Close</p>

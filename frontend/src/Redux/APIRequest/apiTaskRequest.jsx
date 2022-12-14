@@ -21,6 +21,16 @@ const getAllOwnerTask = async (accessToken, dispatch, axiosJWT, idProject) => {
         dispatch(getProjectFail("Lỗi"));
     }
 }
+const getDetailTask = async (dispatch, axiosJWT, idTask) => {
+    dispatch(getProjectStart());
+    try {
+        const data = await axiosJWT.get(`/v1/user/project/task/detail/${idTask}`, '');
+        dispatch(getProjectSuccess());
+        return data;
+    } catch (err) {
+        dispatch(getProjectFail("Lỗi"));
+    }
+}
 
 const editTask = async (dispatch, navigate, accessToken, axiosJWT, idTask, data) => {
     try {
@@ -42,4 +52,4 @@ const deleteTask = async (dispatch, navigate, accessToken, axiosJWT, idTask) => 
 
 
 
-export { addNewTask, getAllOwnerTask, editTask, deleteTask };
+export { addNewTask, getAllOwnerTask, getDetailTask, editTask, deleteTask };

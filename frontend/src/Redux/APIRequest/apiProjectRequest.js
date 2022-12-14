@@ -47,7 +47,7 @@ const getDetailProject = async (dispatch, axiosJWT, idProject) => {
 
 const editProject = async (dispatch, navigate, accessToken, axiosJWT, idProject, data) => {
     try {
-        await axiosJWT.post(`/v1/user/Projects/edit/${idProject}`, data);
+        await axiosJWT.post(`/v1/user/projects/edit/${idProject}`, data);
         // navigate("/home/project");
     } catch (err) {
         console.log(err);
