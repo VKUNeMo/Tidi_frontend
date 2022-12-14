@@ -38,11 +38,11 @@ function DetailProject() {
         },
         {
             name: "Task",
-            component: <Task data={data} />,
+            component: <Task  />,
         },
         {
             name: "Todo List",
-            component: <Todo data={data} />,
+            component: <Todo  />,
         },
     ]
     const [active, setActive] = useState(features[0].component);

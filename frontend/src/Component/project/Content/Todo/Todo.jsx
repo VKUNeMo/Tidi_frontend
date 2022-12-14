@@ -1,22 +1,45 @@
-import React from "react";
-import BtnCreate from "../Todo/BtnCreate";
+import React, { useState, useEffect } from "react";
+import BtnCreate from "../Todo/Create/BtnCreate";
+import {
+    useParams
+} from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { createAxios } from "../../../../createInstance";
+import { getProjectSuccess } from "../../../../Redux/Slice/projectSlice";
+import { getAllOwnerTodo } from "../../../../Redux/APIRequest/apiTodoRequest";
+import Loading from "../../../loading/Loading"
+function Todo() {
+    let { id } = useParams();
+    const dispatch = useDispatch();
+    const token = useSelector(state => state.auth.login.token);
+    const refreshToken = token?.refreshToken;
+    const accessToken = token?.accessToken;
+    const user = useSelector(state => state.auth.login.currentUser);
+    const [data, setData] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    useEffect(() => {
+        const axiosJWT = createAxios(user, accessToken, refreshToken, dispatch, getProjectSuccess);
+        getAllOwnerTodo(accessToken, dispatch, axiosJWT, id).then(raw => {
+            setData(raw.data)
+            setIsLoading(false);
+        });
+    }, [accessToken, dispatch, id, refreshToken, user]);
 
-function Todo({ name }) {
-    function Kanban({ heading, taskList }) {
+    function Kanban({ heading, state,taskList }) {
         return (
-            <div className="h-full cursor-pointer">
+            <div key={heading} className="h-full cursor-pointer">
                 <div className="text-center font-semibold text-2xl">
                     {heading}
                 </div>
                 <div>
                     {taskList.map(function (task) {
                         return <>
-                            <div className="flex flex-col p-2 m-2 rounded border">
+                            <div key={task.title} className="flex flex-col p-2 m-2 rounded border">
                                 <div className="font-semibold text-xl ">
-                                    {task.name}
+                                    {task.title}
                                 </div>
-                                <div className=" text-ellipsis hidden md:block">
-                                    {task.des}
+                                <div className=" text-limit">
+                                    {task.content}
                                 </div>
                                 <div className="text-center mt-4 hidden">
                                     {task.creatAt}
@@ -25,58 +48,25 @@ function Todo({ name }) {
                         </>
                     })}
                 </div>
-                    <BtnCreate></BtnCreate>
-              
+                <BtnCreate id={id} state={state}></BtnCreate>
+
 
             </div>
         )
     }
-    const listTodo = [
-        {
-            id: 1,
-            name: "todo1",
-            des: "day la task moi day nha nho hoan thanh som nhe ",
-            creatAt: "dd:mm:yy"
-        },
-    ]
-    const listDoing = [
-        {
-            id: 2,
-            name: "Doing 1",
-            des: "day la task moi day nha nho hoan thanh som nhe ",
-            creatAt: "dd:mm:yy"
-        },
-        {
-            id: 5,
-            name: "Doing 3",
-            des: "day la task moi day nha nho hoan thanh som nhe ",
-            creatAt: "dd:mm:yy"
-        }
-    ]
-    const listDone = [
-        {
-            id: 3,
-            name: "Done 2",
-            des: "day la task moi day nha nho hoan thanh som nhe ",
-            creatAt: "dd:mm:yy"
-        },
-    ]
-    const listTest = [
-        {
-            id: 4,
-            name: "test 1",
-            des: "day la task moi day nha nho hoan thanh som nhe ",
-            creatAt: "dd:mm:yy"
-        },
-    ]
+    const listTodo = data.filter(todo => todo.state === 1);
+    const listDoing = data.filter(todo => todo.state === 2);
+    const listDone = data.filter(todo => todo.state === 3);
+    const listTest = data.filter(todo => todo.state === 4);
+    console.log(listTest)
     return (
         <>
-            <div className="h-full w-full grid grid-cols-4  px-4">
-                <Kanban heading={"Todo"} taskList={listTodo} ></Kanban>
-                <Kanban heading={"Doing"} taskList={listDoing} ></Kanban>
-                <Kanban heading={"Done"} taskList={listDone} ></Kanban>
-                <Kanban heading={"Test"} taskList={listTest} ></Kanban>
-            </div>
+            {isLoading ? <Loading /> : (<div className="h-full w-full grid grid-cols-4  px-4">
+                <Kanban heading={"Todo"} state={1} taskList={listTodo} ></Kanban>
+                <Kanban heading={"Doing"} state={2} taskList={listDoing} ></Kanban>
+                <Kanban heading={"Done"} state={3} taskList={listDone} ></Kanban>
+                <Kanban heading={"Test"} state={4} taskList={listTest} ></Kanban>
+            </div>)}
         </>
     )
 }

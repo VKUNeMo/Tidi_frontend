@@ -13,8 +13,14 @@
     display: none;
 }
 
+@media (min-width: 768px) {
+    .text-limit {
+        display: block;
+    }
+}
+
 .text-limit {
-    display: block;
+    display: hidden ;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;

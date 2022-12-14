@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
 
 import { GrAdd } from "react-icons/gr";
-import FormCreate from "./FormCreate";
-function BtnCreate() {
+import FormCreate from "../../Todo/Create/FormCreate";
+function BtnCreate({ id,state }) {
 
 
     function handleCreate() {
@@ -38,16 +38,16 @@ function BtnCreate() {
     }
     return (
         <>
-            <div className=" p-4 rounded bg-blue-300 flex cursor-pointer " onClick={handleCreate}>
-                <div className="m-auto ">
+            <div className=" m-2 p-2 rounded bg-blue-300 flex items-center justify-center " onClick={handleCreate}>
+                <div className="my-auto">
                     <GrAdd></GrAdd>
                 </div>
-                <button className="ml-2 hidden lg:block" >Create New Project</button>
+                <button className="ml-2" >Add</button>
             </div>
             {isComponentVisible &&
-                <div className="fixed top-0 left-0 bottom-0 right-0 z-40 bg-black bg-opacity-30">
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50  bg-white w-1/4 h-auto" ref={ref}>
-                        <FormCreate handleClick={handleCreate}></FormCreate>
+                <div className="fixed top-0 left-0 bottom-0 right-0 z-40 bg-black bg-opacity-30" >
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50  bg-white w-1/3 h-auto" ref={ref}>
+                        <FormCreate id={id} state={state} handleClick={handleCreate}></FormCreate>
                     </div>
                 </div>
 
