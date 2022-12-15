@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { AiOutlineSchedule } from "react-icons/ai"
 import { createAxios } from "../../../../createInstance";
 import { getProjectSuccess } from "../../../../Redux/Slice/projectSlice";
 import { getDetailTask } from "../../../../Redux/APIRequest/apiTaskRequest";
@@ -17,16 +18,27 @@ function DetailTask({ idTask }) {
     useEffect(() => {
         const axiosJWT = createAxios(user, accessToken, refreshToken, dispatch, getProjectSuccess);
         getDetailTask(dispatch, axiosJWT, idTask).then(raw => {
-            setData(raw);
+            setData(raw.data);
             setIsLoading(false);
         });
     }, [accessToken, dispatch, idTask, refreshToken, user]);
-    console.log(idTask);
-    console.log(data);
     return (
         <>
             {isLoading ? <Loading /> : (<div className="w-full p-4">
-                detail
+                <div className="flex flex-row justify-between mb-4">
+                    <div className="text-2xl font-semibold">
+                        {data.title}
+                    </div>
+                    <div className="text-gray-400">
+                        <AiOutlineSchedule></AiOutlineSchedule>
+                        {moment(data.dayStart).format('DD/MM/YYYY')} -
+                        {moment(data.dayEnd).format('DD/MM/YYYY')}
+                    </div>
+                </div>
+                <div>
+                    {data.description}
+                </div>
+
             </div>)}
         </>
     )

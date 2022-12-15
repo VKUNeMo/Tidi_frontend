@@ -8,6 +8,7 @@ import { createAxios } from "../../../../createInstance";
 import { getProjectSuccess } from "../../../../Redux/Slice/projectSlice";
 import { getAllOwnerTodo } from "../../../../Redux/APIRequest/apiTodoRequest";
 import Loading from "../../../loading/Loading"
+import BtnDelete from "./Delete/BtnDelete";
 function Todo() {
     let { id } = useParams();
     const dispatch = useDispatch();
@@ -25,7 +26,7 @@ function Todo() {
         });
     }, [accessToken, dispatch, id, refreshToken, user]);
 
-    function Kanban({ heading, state,taskList }) {
+    function Kanban({ heading, state, taskList }) {
         return (
             <div key={heading} className="h-full cursor-pointer">
                 <div className="text-center font-semibold text-2xl">
@@ -35,8 +36,13 @@ function Todo() {
                     {taskList.map(function (task) {
                         return <>
                             <div key={task.title} className="flex flex-col p-2 m-2 rounded border">
-                                <div className="font-semibold text-xl ">
-                                    {task.title}
+                                <div className=" flex flex-row justify-between">
+                                    <div className="font-semibold text-xl">
+                                        {task.title}
+                                    </div>
+                                    <div className="my-auto">
+                                        <BtnDelete idTodo={task._id}></BtnDelete>
+                                    </div>
                                 </div>
                                 <div className=" text-limit">
                                     {task.content}
