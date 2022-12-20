@@ -22,6 +22,7 @@ function Task() {
     const [data, setData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [idTask, setIdTask] = useState("");
+    const CURRENT_DAY = new Date();
     useEffect(() => {
         const axiosJWT = createAxios(user, accessToken, refreshToken, dispatch, getProjectSuccess);
         getAllOwnerTask(accessToken, dispatch, axiosJWT, id).then(raw => {
@@ -32,18 +33,19 @@ function Task() {
     }, [accessToken, dispatch, id, refreshToken, user]);
     function handleSetIdTask(e, id) {
         e.preventDefault();
-        setIdTask(id)
+        setIdTask(id);
     }
+
     return (
         <>
             <div className="flex flex-row">
-                {isLoading ? <Loading /> : (<div className="w-1/3 p-4 border-r border-r-gray-200 ">
+                {isLoading ? <Loading /> : (<div className="w-1/3 p-4 border-r border-r-gray-200  ">
                     {data.map(function (task) {
                         return (
-                            <>
-                                <div key={task._id} className="p-4 rounded border my-2 cursor-pointer" onClick={(e) => handleSetIdTask(e, task._id)}>
+                            <div className="box-shadow-custom mb-4">
+                                {moment(CURRENT_DAY).isBefore(task.dayEnd) ? (<div key={task._id} className="p-4 rounded border my-2 cursor-pointer" onClick={(e) => handleSetIdTask(e, task._id)}>
                                     <div className="flex flex-row justify-between">
-                                        <div className="text-xl font-semibold">
+                                        <div className="text-xl font-semibold" >
                                             {task.title}
                                         </div>
                                         <div className="my-auto">
@@ -54,8 +56,21 @@ function Task() {
                                         {moment(task.dayStart).format('DD/MM/YYYY')} -
                                         {moment(task.dayEnd).format('DD/MM/YYYY')}
                                     </div>
-                                </div>
-                            </>
+                                </div>) : (<div key={task._id} className="p-4 rounded bg-red-700 text-white border my-2 cursor-pointer" onClick={(e) => handleSetIdTask(e, task._id)}>
+                                    <div className="flex flex-row justify-between">
+                                        <div className="text-xl font-semibold" >
+                                            {task.title}
+                                        </div>
+                                        <div className="my-auto">
+                                            <BtnDelete idTask={task._id}></BtnDelete>
+                                        </div>
+                                    </div>
+                                    <div className="text-sm text-gray-400  hidden md:flex md:flex-row-reverse">
+                                        {moment(task.dayStart).format('DD/MM/YYYY')} -
+                                        {moment(task.dayEnd).format('DD/MM/YYYY')}
+                                    </div>
+                                </div>)}
+                            </div>
 
                         )
                     })}

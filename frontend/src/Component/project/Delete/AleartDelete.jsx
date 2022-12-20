@@ -24,8 +24,8 @@ function AleartDelete({ project, handleClick }) {
                     Do you want to delete this project ?
                 </div>
                 <div className="flex flex-row">
-                    <p onClick={handleDelete} className="mx-2 p-4 w-20 cursor-pointer text-center  rounded-lg bg-red-500 border border-red-500">Delete</p>
-                    <p onClick={handleClick} className="mx-2 p-4 w-20 cursor-pointer text-center rounded-lg border border-red-500">Close</p>
+                    <p onClick={handleDelete} className={"mx-2 p-4 w-20 cursor-pointer text-center  rounded-lg bg-red-500 border border-red-500"}>Delete</p>
+                    <p onClick={handleClick} className={"mx-2 p-4 w-20 cursor-pointer text-center rounded-lg border border-red-500"}>Close</p>
                 </div>
             </div>
 

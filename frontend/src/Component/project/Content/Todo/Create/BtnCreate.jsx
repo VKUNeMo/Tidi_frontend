@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 
 import { GrAdd } from "react-icons/gr";
 import FormCreate from "../../Todo/Create/FormCreate";
-function BtnCreate({ id,state }) {
+function BtnCreate({ id, state }) {
 
 
     function handleCreate() {
@@ -42,7 +42,7 @@ function BtnCreate({ id,state }) {
                 <div className="my-auto">
                     <GrAdd></GrAdd>
                 </div>
-                <button className="ml-2" >Add</button>
+                <span className="ml-2" >Add</span>
             </div>
             {isComponentVisible &&
                 <div className="fixed top-0 left-0 bottom-0 right-0 z-40 bg-black bg-opacity-30" >

@@ -6,13 +6,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { createAxios } from "../../../createInstance";
 import { getProjectSuccess } from "../../../Redux/Slice/projectSlice";
 import { getDetailProject } from "../../../Redux/APIRequest/apiProjectRequest";
-import ScheduleCompo from "./ScheduleCompo";
+import ScheduleCompo from "./Schedule/ScheduleCompo";
 import Task from "./Task/Task";
 import Loading from "../../loading/Loading"
 import Todo from "./Todo/Todo";
 import { AiOutlineEdit } from "react-icons/ai"
 import BtnCreate from "../Create/BtnCreate";
 import BtnDelete from "../Delete/BtnDelete";
+import ListMember from "./Member/ListMember";
 function DetailProject() {
     let { id } = useParams();
     const [key, setKey] = useState('');
@@ -33,17 +34,25 @@ function DetailProject() {
 
     const features = [
         {
+            id: 1,
             name: "Schedule",
             component: <ScheduleCompo id={id} />,
         },
         {
+            id: 2,
             name: "Task",
-            component: <Task  />,
+            component: <Task />,
         },
         {
+            id: 3,
             name: "Todo List",
-            component: <Todo  />,
+            component: <Todo />,
         },
+        {
+            id: 4,
+            name: "Member",
+            component: <ListMember />
+        }
     ]
     const [active, setActive] = useState(features[0].component);
     function handleClick(e, feature) {
@@ -54,7 +63,7 @@ function DetailProject() {
         return (
             <>
                 <div key={feature.name} className="inline-block px-4 p-2 cursor-pointer ">
-                    <p
+                    <p key={feature.id}
                         onClick={(e) => handleClick(e, feature)}>{feature.name}</p>
                 </div>
             </>
@@ -66,10 +75,10 @@ function DetailProject() {
 
     return (
         <>
-            {isLoading ? <Loading /> : (<div className="h-screen w-full  relative lg:w-4/5">
-                <div className="w-full flex flex-row border-y-2 justify-between p-4">
+            {isLoading ? <Loading /> : (<div className="h-screen w-full  relative lg:w-4/5 z-10">
+                <div className="w-full flex flex-row border-y-2 border-gray-200 justify-between p-4">
                     <div className="w-1/2 ">
-                        <input type="text" placeholder="Search" value={key} onChange={e => setKey(e.target.value)} className="w-full rounded-md  p-4 bg-slate-200 focus:outline-0 "></input>
+                        <input type="text" placeholder="Search" value={key} onChange={e => setKey(e.target.value)} className="w-full border-none rounded-md  p-4 bg-slate-10 focus:outline-0 "></input>
                     </div>
                     <BtnCreate></BtnCreate>
                 </div>
@@ -80,9 +89,9 @@ function DetailProject() {
                     </div>
                     <div className="h-full flex flex-row">
                         <div className="p-4  bg-slate-200 rounded-xl flex mx-2 cursor-pointer">
-                            <button onClick={handleDelete} >
+                            <span onClick={handleDelete} >
                                 <AiOutlineEdit></AiOutlineEdit>
-                            </button>
+                            </span>
                         </div>
                         <div className="p-4  bg-red-500 rounded-xl flex mx-2 cursor-pointer">
                             <BtnDelete project={data}></BtnDelete>

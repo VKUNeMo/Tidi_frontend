@@ -37,8 +37,8 @@ function ListProject() {
         <>
             {isLoading ? <Loading /> : (data.map(function (proo) {
                 return (
-                    <div key={proo.name} className="pl-10 py-2 hover:bg-slate-400" onClick={(e) => hanldeClick(e, proo)}>
-                        <div className="inline-block mx-2">
+                    <div key={proo.name} className="pl-4 py-2 hover:bg-slate-400" onClick={(e) => hanldeClick(e, proo)}>
+                        <div className="inline-block mx-2" key={proo.idProject}>
                             <FcDocument></FcDocument>
                         </div>
                         <p className="inline-block "> {proo.idProject.title}</p>

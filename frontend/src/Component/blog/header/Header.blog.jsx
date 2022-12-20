@@ -258,7 +258,7 @@ function HeaderBlog(props) {
                                                                         comment</label>
                                                                     <textarea id="comment" rows="4"
                                                                               onChange={e => setComment(e.target.value)}
-                                                                              className="w-full outline-0 resize-none overflow-x-hidden overflow-y-auto px-0 bg-gray-200 text-sm text-gray-900 bg-white border-0 focus:ring-0 dark:placeholder-gray-400"
+                                                                              className="w-full outline-0 resize-none overflow-x-hidden overflow-y-auto px-0  text-sm text-gray-900 bg-white border-0 focus:ring-0 dark:placeholder-gray-400"
                                                                               placeholder="Write a comment..."
                                                                               required/>
                                                                 </div>

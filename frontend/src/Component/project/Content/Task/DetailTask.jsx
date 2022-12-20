@@ -30,11 +30,16 @@ function DetailTask({ idTask }) {
                     <div className="text-2xl font-semibold">
                         {data.title}
                     </div>
-                    <div className="text-gray-400">
-                        <AiOutlineSchedule></AiOutlineSchedule>
-                        {moment(data.dayStart).format('DD/MM/YYYY')} -
-                        {moment(data.dayEnd).format('DD/MM/YYYY')}
-                    </div>
+                    {moment(CURRENT_DAY).isBefore(data.dayEnd) ?
+                        (<div className="text-gray-400">
+                            <AiOutlineSchedule></AiOutlineSchedule>
+                            {moment(data.dayStart).format('DD/MM/YYYY')} -
+                            {moment(data.dayEnd).format('DD/MM/YYYY')}
+                        </div>) :
+                        (<div>
+                            <span className="text-gray-400 uppercase">Out of date</span>
+                        </div>)}
+
                 </div>
                 <div>
                     {data.description}

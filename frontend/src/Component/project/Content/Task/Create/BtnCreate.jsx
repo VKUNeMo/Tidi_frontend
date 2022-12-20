@@ -38,7 +38,7 @@ function BtnCreate({ id, state }) {
     }
     return (
         <>
-            <div className=" m-2 p-2 rounded bg-blue-300 flex items-center justify-center cursor-pointer " onClick={handleCreate}>
+            <div className=" m-2 p-2 rounded bg-blue-300 flex items-center justify-center cursor-pointer box-shadow-custom" onClick={handleCreate}>
                 <div className=" inline-block">
                     <GrAdd></GrAdd>
                 </div>

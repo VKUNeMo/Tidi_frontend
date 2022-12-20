@@ -4,10 +4,10 @@ import {
     useParams
 } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { createAxios } from "../../../createInstance";
-import { getProjectSuccess } from "../../../Redux/Slice/projectSlice";
-import { getAllOwnerTask } from "../../../Redux/APIRequest/apiTaskRequest";
-import Loading from "../../../Component/loading/Loading"
+import { createAxios } from "../../../../createInstance";
+import { getProjectSuccess } from "../../../../Redux/Slice/projectSlice";
+import { getAllOwnerTask } from "../../../../Redux/APIRequest/apiTaskRequest";
+import Loading from "../../../loading/Loading"
 import { ScheduleComponent, Day, Week, WorkWeek, Month, Agenda, Inject } from '@syncfusion/ej2-react-schedule';
 function ScheduleCompo() {
     let { id } = useParams();
@@ -37,9 +37,10 @@ function ScheduleCompo() {
     })
     return (
         <>
-            {isLoading ? <Loading /> : (<ScheduleComponent height='full' eventSettings={{ dataSource: days }}>
+            {isLoading ? <Loading /> : (<ScheduleComponent height='full' eventSettings={{ dataSource: days }}  >
                 <Inject services={[Day, Week, WorkWeek, Month, Agenda]} />
-            </ScheduleComponent>)}
+            </ScheduleComponent>)
+            }
         </>
     );
 }
