@@ -31,7 +31,7 @@ function App() {
             <div id='main-component' className='w-screen h-screen grid overflow-x-hidden'>
 
                 {isLogin && <Nav/>}
-                <div>
+                <div className={"max-sm:mt-[50px]"}>
                     <Routes>
                         <Route index element={<Home/>}/>
                         <Route path="/login" element={<Login/>}/>

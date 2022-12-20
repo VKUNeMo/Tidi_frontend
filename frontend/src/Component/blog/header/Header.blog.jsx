@@ -3,7 +3,14 @@ import moment from "moment";
 import {Link, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {createAxios} from "../../../createInstance";
-import {checkStorage, getBlogSuccess} from "../../../Redux/Slice/blogSlice";
+import {
+    addCommentSuccess,
+    checkStorage,
+    deleteBlogSuccess, deleteCommentSuccess,
+    getBlogSuccess,
+    getCommentSuccess,
+    storageBlogSuccess, unStorageBlogStart, unStorageBlogSuccess
+} from "../../../Redux/Slice/blogSlice";
 import {
     addComment,
     addStorage,
@@ -28,6 +35,7 @@ import EmojiPicker from "emoji-picker-react";
 import {IoLocationSharp} from "react-icons/io5";
 import {RiAttachmentLine} from "react-icons/ri";
 import Loading from "../../loading/Loading";
+import {loginSuccess} from "../../../Redux/Slice/authSlice";
 
 
 function HeaderBlog(props) {
@@ -47,24 +55,25 @@ function HeaderBlog(props) {
     const token = useSelector(state => state.auth.login.token);
     const refreshToken = token?.refreshToken;
     const accessToken = token?.accessToken;
-    const axiosJWT = createAxios(user, accessToken, refreshToken, dispatch, getBlogSuccess);
     const handleDelete = async () => {
         // eslint-disable-next-line no-restricted-globals
         const temp = confirm("Are you sure?");
         if (temp) {
+            const axiosJWT = createAxios(user, accessToken, refreshToken, dispatch, deleteBlogSuccess);
             await deleteBlog(dispatch, navigate, accessToken, axiosJWT, blog._id);
         }
     }
     useEffect(() => {
         if(blog?._id){
-            getComment(blog?._id, axiosJWT).then(r => {
+            getComment(blog?._id).then(r => {
                 setComments(r.data);
                 setIsLoading(false);
             });
         }
-    }, [blog, allComment]);
+    }, [blog]);
 
     const handleStorage = () => {
+        const axiosJWT = createAxios(user, accessToken, refreshToken, dispatch, storageBlogSuccess);
         addStorage(dispatch, accessToken, blog._id, axiosJWT).then(rs => {
             toast.success("Saved", {autoClose: 1000, position: "bottom-right"});
             dispatch(checkStorage(rs.data.storage));
@@ -73,6 +82,7 @@ function HeaderBlog(props) {
     };
 
     const handleUnarchived = () => {
+        const axiosJWT = createAxios(user, accessToken, refreshToken, dispatch, unStorageBlogSuccess);
         deleteStorage(dispatch, accessToken, checkSave.idBlog, axiosJWT).then(rs => {
             toast.success("Đã gỡ bài viết khỏi mục lưu trữ", {position: "bottom-right", autoClose: 1500});
             dispatch(checkStorage(false));
@@ -82,6 +92,7 @@ function HeaderBlog(props) {
     const handleSendComment = (e) => {
         e.preventDefault();
         if (comment) {
+            const axiosJWT = createAxios(user, accessToken, refreshToken, dispatch, addCommentSuccess);
             addComment(blog._id, axiosJWT, {idUser: user._id, content: comment}).then(r => {
                 toast.success("Post comment successfully", {autoClose: 1000, position: 'bottom-right'});
             });
@@ -89,6 +100,7 @@ function HeaderBlog(props) {
     }
 
     const handleDeleteComment = (idComment) => {
+        const axiosJWT = createAxios(user, accessToken, refreshToken, dispatch, loginSuccess);
         deleteComment(idComment, axiosJWT).then(r => toast.success("Comment removed", {
             autoClose: 1000,
             position: 'bottom-right'
@@ -240,14 +252,15 @@ function HeaderBlog(props) {
 
                                 <div className="relative w-screen h-full flex justify-end items-center">
                                     <div
-                                        className="relative bg-white rounded-lg shadow  w-[50%] min-w-[350px] h-full flex flex-col overflow-x-hidden overflow-y-auto"
+                                        className="relative bg-white rounded-lg shadow animate-[] transfo w-[50%] min-w-[460px]
+                                        h-full flex flex-col overflow-x-hidden overflow-y-auto max-sm:top-1/6 max-sm:w-screen max-sm:min-w-full"
                                         onClick={(e) => temp(e)}>
                                         <div className={"mx-8"}>
                                             <ul className={""}>
                                                 <li className={"flex my-4"}>
                                                     <div>
                                                         <img src={user.avatar}
-                                                             className={"w-12 h-12 rounded-full"} alt=""/>
+                                                             className={"w-8 h-8 rounded-full"} alt=""/>
                                                     </div>
                                                     <div className={"bg-white mb-8 rounded ml-2 w-full"}>
                                                         <form>
@@ -304,7 +317,7 @@ function HeaderBlog(props) {
                                                             <li key={each._id} className={"flex my-4"}>
                                                                 <div>
                                                                     <img src={each.idUser.avatar}
-                                                                         className={"w-12 h-12 rounded-full"} alt=""/>
+                                                                         className={"w-8 h-8 rounded-full"} alt=""/>
                                                                 </div>
                                                                 <div className={"bg-gray-200 py-1 px-2 w-full mx-2 rounded-xl"}>
                                                                     <div className={"flex justify-between"}>
@@ -330,7 +343,7 @@ function HeaderBlog(props) {
                     </div>
                 ) : ("")}
                 <div
-                    className={"h-full border-solid border-0 border-l-gray-300 border-l-2 flex justify-center items-center pl-2"}>
+                    className={"h-full border-solid border-0 border-l-gray-300 border-l-2 flex justify-center items-center pl-2 max-sm:hidden"}>
                     <span className="text-sm font-medium text-gray-900 dark:text-gray-600">Light</span>
 
                     <label className="inline-flex relative items-center cursor-pointer absolute top-0 ml-6">

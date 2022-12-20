@@ -9,13 +9,13 @@ const BlogProfile = (props) => {
     return (
         <div>
             <div className={"mt-4"}>
-                <h1 className={"mb-6 mx-6"}>All articles</h1>
+                <h1 className={"mb-6 mx-0"}>All articles</h1>
                 <ul>
                     {props.loading ? <Loading/> : (
                         <>{blogs.map(blog => (
-                            <li key={blog._id} className={"mx-6 border-solid border-0 border-t-2 border-gray-400 hover:bg-gray-500 min-h-80px"}>
+                            <li key={blog._id} className={"mx-0 border-solid border-0 border-t-2 border-gray-400 hover:bg-gray-500 min-h-80px"}>
                                 <Link to={`/blog/view/${blog._id}`} className={"w-full py-2 mx-2 px-2"}>
-                                    <div className={"mx-6"}>
+                                    <div className={"mx-4"}>
                                         <div className={"flex justify-between w-fit"}>
                                             <div>
                                                 <img src={user.avatar} alt="" className={"w-10 h-10 rounded-2xl bg-black"}/>

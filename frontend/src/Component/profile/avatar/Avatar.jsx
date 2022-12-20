@@ -52,7 +52,7 @@ const Avatar = () => {
                     <h1 className={"mb-2"}>Avatar</h1>
                     <hr/>
                 </div>
-                <div>
+                <div className={"max-lg:flex max-lg:flex-col max-lg:justify-center max-lg:items-center"}>
                     <label htmlFor="avatar">
                         <img src={currentAvatar} alt="avatar" className={"w-96 h-96 rounded-2xl border-solid mb-4"}/>
                     </label>
