@@ -22,7 +22,6 @@ import {
     AiOutlineShareAlt
 } from "react-icons/ai";
 import {BiCommentDetail} from "react-icons/bi";
-import Share from "./Share";
 import {BsFacebook, BsFillImageFill, BsMessenger, BsThreeDots} from "react-icons/bs";
 import EmojiPicker from "emoji-picker-react";
 import {IoLocationSharp} from "react-icons/io5";

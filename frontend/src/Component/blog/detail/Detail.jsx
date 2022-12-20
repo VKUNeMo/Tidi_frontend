@@ -6,7 +6,7 @@ import {getDetailBlog} from "../../../Redux/APIRequest/apiBlogRequest";
 import {useParams} from "react-router-dom";
 import config from "../../editor/config";
 import HeaderBlog from "../header/Header.blog";
-import Share from "../header/Share";
+// import Share from "../header/Share";
 
 function Detail() {
     const editor = useRef(null);

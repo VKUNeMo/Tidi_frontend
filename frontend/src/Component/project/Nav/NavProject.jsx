@@ -11,15 +11,15 @@ function NavProject() {
         {
             icon: <HiOutlineUserGroup />,
             iconActive: <HiUserGroup />,
-            item: "/home/member",
-            itemLink: "/home/member",
+            item: "member",
+            itemLink: "member",
             name: "Member",
         },
         {
             icon: <AiOutlineProject />,
             iconActive: <AiFillProject />,
-            item: "/home/project",
-            itemLink: "/home/project",
+            item: "/project",
+            itemLink: "/project",
             name: "Project",
         },
     ]
