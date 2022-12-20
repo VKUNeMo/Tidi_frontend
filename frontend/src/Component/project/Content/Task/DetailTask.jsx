@@ -22,6 +22,7 @@ function DetailTask({ idTask }) {
             setIsLoading(false);
         });
     }, [accessToken, dispatch, idTask, refreshToken, user]);
+    const CURRENT_DAY = new Date();
     return (
         <>
             {isLoading ? <Loading /> : (<div className="w-full p-4">

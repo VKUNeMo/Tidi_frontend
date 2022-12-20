@@ -4,7 +4,7 @@ import { AiOutlineFile, AiOutlineLogout, AiOutlineStar, AiOutlineUser, AiFillSta
 import { FaNewspaper, FaUserAlt } from "react-icons/fa";
 import { logoutUser } from "../../Redux/APIRequest/apiAuthRequest";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useNavigate,useLocation } from "react-router-dom";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import { createAxios } from "../../createInstance";
 import { logoutSuccess } from "../../Redux/Slice/authSlice";
 function Nav() {
@@ -57,31 +57,6 @@ function Nav() {
         },
     ]
     const location = useLocation();
-    const itemTop = listsTop.map((list, index) => {
-        return (
-            <NavLink className={`item_${index + 1}`} to={`${list.itemLink}`} key={index} exact>
-                {!(location.pathname.includes(list.itemLink)) ?
-                    (<div className="p-4 text-2xl cursor-pointer rounded text-gray-700 hover:bg-gray-300 " >
-                        {list.icon}
-                    </div>) : (<div className="p-4 text-2xl cursor-pointer text-black border-r border-black" >
-                        {list.iconActive}
-                    </div>)}
-            </NavLink >
-        )
-    })
-    const itemUnder = listsUnder.map((list, index) => {
-        return (
-            <NavLink className={`item_${index + 1}`} to={`${list.itemLink}`} key={index}>
-                {!(location.pathname.includes(list.itemLink)) ?
-                    (<div className="p-4 text-2xl cursor-pointer rounded text-gray-900 hover:bg-gray-300 " >
-                        {list.icon}
-                    </div>) : (<div className="p-4 text-2xl cursor-pointer text-gray-900 border-r border-black" >
-                        {list.iconActive}
-                    </div>)}
-            </NavLink >
-        )
-    })
-
     return (
         <>
             <nav className="h-screen flex items-center float-left flex-col border-r border-r-slate-300 justify-between z-50">
@@ -89,10 +64,32 @@ function Nav() {
                     <div>
                         <img src="icon.png" alt="anh icon" className="w-14 h-14 object-cover cursor-pointer" />
                     </div>
-                    {itemTop}
+                    {listsTop.map((list, index) => {
+                        return (
+                            <NavLink className={`item_${index + 1}`} to={`${list.itemLink}`} key={index} exact>
+                                {!(location.pathname.includes(list.itemLink)) ?
+                                    (<div className="p-4 text-2xl cursor-pointer rounded text-gray-700 hover:bg-gray-300 " >
+                                        {list.icon}
+                                    </div>) : (<div className="p-4 text-2xl cursor-pointer text-black border-r border-black" >
+                                        {list.iconActive}
+                                    </div>)}
+                            </NavLink >
+                        )
+                    })}
                 </div>
                 <div>
-                    {itemUnder}
+                    {listsUnder.map((list, index) => {
+                        return (
+                            <NavLink className={`item_${index + 1}`} to={`${list.itemLink}`} key={index}>
+                                {!(location.pathname.includes(list.itemLink)) ?
+                                    (<div className="p-4 text-2xl cursor-pointer rounded text-gray-900 hover:bg-gray-300 " >
+                                        {list.icon}
+                                    </div>) : (<div className="p-4 text-2xl cursor-pointer text-gray-900 border-r border-black" >
+                                        {list.iconActive}
+                                    </div>)}
+                            </NavLink >
+                        )
+                    })}
                     <div className="p-4 text-2xl cursor-pointer rounded text-red-700 hover:bg-gray-400" onClick={handleLogOut}>
                         <AiOutlineLogout />
                     </div>

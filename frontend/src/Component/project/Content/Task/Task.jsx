@@ -32,7 +32,6 @@ function Task() {
     }, [accessToken, dispatch, id, refreshToken, user]);
     function handleSetIdTask(e, id) {
         e.preventDefault();
-        console.log(id)
         setIdTask(id)
     }
     return (

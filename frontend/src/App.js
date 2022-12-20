@@ -8,7 +8,6 @@ import Nav from "./Component/Nav/Nav"
 import { useSelector } from "react-redux";
 import DetailProject from "./Component/project/Content/DetailProject";
 
-
 function App() {
   const isLogin = useSelector(state => state.auth.login.success);
 
@@ -23,7 +22,7 @@ function App() {
           <Route path="/home/*" element={<Home />} >
             <Route path="project/:name" element={<DetailProject />} />
           </Route>
-          {/* <Route path="/profile" element={<Profile />} /> */}
+            {/* <Route path="/profile" element={<Profile />} /> */}
         </Routes>
       </div>
     </Router>
