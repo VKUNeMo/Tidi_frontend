@@ -24,14 +24,7 @@ export const registerUser = async (user, dispatch, navigate) => {
 
 export const loginUser = async (user, dispatch, navigate) => {
     dispatch(loginStart());
-    try {
-        const data = await instance.post("v1/auth/login", user);
-        dispatch(loginSuccess(data.data));
-        navigate("/home");
-    } catch (err) {
-        const msg = err.response?.data.message ?? "";
-        dispatch(loginFail(msg));
-    }
+    return await instance.post("v1/auth/login", user);
 }
 
 export const logoutUser = async (dispatch, navigate, accessToken, axiosJWT) => {
@@ -39,7 +32,6 @@ export const logoutUser = async (dispatch, navigate, accessToken, axiosJWT) => {
     try {
         await axiosJWT.post("v1/auth/logout", '', { headers: { token: `Bearer ${accessToken}` } });
         dispatch(logoutSuccess());
-        alert("Đăng xuất thành công");
         navigate("/login");
     } catch (err) {
         console.log(err);
@@ -47,14 +39,14 @@ export const logoutUser = async (dispatch, navigate, accessToken, axiosJWT) => {
     }
 }
 
-export const getInfo = async (idUser) => {
-    try {
-        return instance.get(`/v1/user/info/${idUser}`);
-    } catch (err) {
-        console.log(err);
-    }
-}
+// export const getInfo = async (idUser) => {
+//     try {
+//         return instance.get(`/v1/user/info/${idUser}`);
+//     } catch (err) {
+//         console.log(err);
+//     }
+// }
 
-export const changePassword = async (data, dispatch, axiosJWT) => {
-    return await axiosJWT.post("/v1/user/change/password", data);
-}
+// export const changePassword = async (data, dispatch, axiosJWT) => {
+//     return await axiosJWT.post("/v1/user/change/password", data);
+// }

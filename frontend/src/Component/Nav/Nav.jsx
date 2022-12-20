@@ -1,12 +1,27 @@
 import React from "react";
+// import { BsHouse, BsNewspaper, BsHouseFill } from "react-icons/bs";
+// import { AiOutlineFile, AiOutlineLogout, AiOutlineStar, AiOutlineUser, AiFillStar, AiOutlineSetting, AiFillSetting } from "react-icons/ai";
+// import { FaNewspaper, FaUserAlt } from "react-icons/fa";
+// import { logoutUser } from "../../Redux/APIRequest/apiAuthRequest";
+// import { useDispatch, useSelector } from "react-redux";
+// import { NavLink, useNavigate, useLocation } from "react-router-dom";
+// import { createAxios } from "../../createInstance";
+// import { logoutSuccess } from "../../Redux/Slice/authSlice";
+// --
 import { BsHouse, BsNewspaper, BsHouseFill } from "react-icons/bs";
-import { AiOutlineFile, AiOutlineLogout, AiOutlineStar, AiOutlineUser, AiFillStar, AiOutlineSetting, AiFillSetting } from "react-icons/ai";
+import { AiOutlineFile, AiOutlineTeam, AiOutlineLogout, AiOutlineFolderOpen, AiOutlineStar, AiOutlineUser, AiFillStar, AiOutlineSetting, AiFillSetting } from "react-icons/ai";
 import { FaNewspaper, FaUserAlt } from "react-icons/fa";
+import { FaRegUserCircle } from "react-icons/fa"
 import { logoutUser } from "../../Redux/APIRequest/apiAuthRequest";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useNavigate, useLocation } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { createAxios } from "../../createInstance";
 import { logoutSuccess } from "../../Redux/Slice/authSlice";
+import { MdArticle } from "react-icons/md";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 function Nav() {
 
     const dispatch = useDispatch();
@@ -16,86 +31,93 @@ function Nav() {
     const accessToken = token?.accessToken;
     const user = useSelector(state => state.auth.login.currentUser);
     const axiosJWT = createAxios(user, accessToken, refreshToken, dispatch, logoutSuccess);
-    console.log(accessToken);
 
     function handleLogOut() {
-        logoutUser(dispatch, navigate, accessToken, axiosJWT);
+        toast.success("Đăng xuất thành công", {
+            position: "top-center",
+            autoClose: 1000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined
+        });
+        setTimeout(() => logoutUser(dispatch, navigate, accessToken, axiosJWT), 1000);
     }
 
-    const listsTop = [
-        {
-            icon: <BsHouse />,
-            iconActive: <BsHouseFill />,
-            item: "home",
-            itemLink: "/home",
-        },
-        {
-            icon: <BsNewspaper />,
-            iconActive: <FaNewspaper />,
-            item: "blog",
-            itemLink: "/blog",
-        },
-        {
-            icon: <AiOutlineStar />,
-            iconActive: <AiFillStar />,
-            item: "likeBlog",
-            itemLink: "/likeBlog",
-        },
-        {
-            icon: <AiOutlineFile />,
-            iconActive: <AiOutlineFile />,
-            item: "chi quen roi :(",
-            itemLink: "/test",
-        }
-    ]
-    const listsUnder = [
-        {
-            icon: <AiOutlineUser />,
-            iconActive: <FaUserAlt />,
-            item: "profile",
-            itemLink: "/profile",
-        },
-    ]
+    // const listsTop = [
+    //     {
+    //         icon: <BsHouse />,
+    //         iconActive: <BsHouseFill />,
+    //         item: "home",
+    //         itemLink: "/home",
+    //     },
+    //     {
+    //         icon: <BsNewspaper />,
+    //         iconActive: <FaNewspaper />,
+    //         item: "blog",
+    //         itemLink: "/blog",
+    //     },
+    //     {
+    //         icon: <AiOutlineStar />,
+    //         iconActive: <AiFillStar />,
+    //         item: "likeBlog",
+    //         itemLink: "/likeBlog",
+    //     },
+    //     {
+    //         icon: <AiOutlineFile />,
+    //         iconActive: <AiOutlineFile />,
+    //         item: "chi quen roi :(",
+    //         itemLink: "/test",
+    //     }
+    // ]
+    // const listsUnder = [
+    //     {
+    //         icon: <AiOutlineUser />,
+    //         iconActive: <FaUserAlt />,
+    //         item: "profile",
+    //         itemLink: "/profile",
+    //     },
+    // ]
     const location = useLocation();
     return (
-        <>
-            <nav className="h-screen flex items-center float-left flex-col border-r border-r-slate-300 justify-between z-50">
-                <div className="w-auto">
-                    <div>
-                        <img src="icon.png" alt="anh icon" className="w-14 h-14 object-cover cursor-pointer" />
-                    </div>
-                    {listsTop.map((list, index) => {
-                        return (
-                            <NavLink className={`item_${index + 1}`} to={`${list.itemLink}`} key={index} exact>
-                                {!(location.pathname.includes(list.itemLink)) ?
-                                    (<div className="p-4 text-2xl cursor-pointer rounded text-gray-700 hover:bg-gray-300 " >
-                                        {list.icon}
-                                    </div>) : (<div className="p-4 text-2xl cursor-pointer text-black border-r border-black" >
-                                        {list.iconActive}
-                                    </div>)}
-                            </NavLink >
-                        )
-                    })}
-                </div>
+        <nav
+            className="h-screen bg-white flex items-center fixed flex-col border-solid border-0 border-r-2 border-r-gray-200 justify-between z-50
+            top-0 w-12 max-sm:h-[50px] max-sm:flex-row max-sm:right-0 max-sm:left-0 max-sm:w-screen max-sm:border-b-2">
+            <div className="max-sm:flex max-sm:flex-row">
                 <div>
-                    {listsUnder.map((list, index) => {
-                        return (
-                            <NavLink className={`item_${index + 1}`} to={`${list.itemLink}`} key={index}>
-                                {!(location.pathname.includes(list.itemLink)) ?
-                                    (<div className="p-4 text-2xl cursor-pointer rounded text-gray-900 hover:bg-gray-300 " >
-                                        {list.icon}
-                                    </div>) : (<div className="p-4 text-2xl cursor-pointer text-gray-900 border-r border-black" >
-                                        {list.iconActive}
-                                    </div>)}
-                            </NavLink >
-                        )
-                    })}
-                    <div className="p-4 text-2xl cursor-pointer rounded text-red-700 hover:bg-gray-400" onClick={handleLogOut}>
-                        <AiOutlineLogout />
-                    </div>
+                    <img src={`${__dirname}icon.png`} alt="anh icon" className="w-12 h-12 object-cover cursor-pointer max-sm:w-[40px] max-sm:h-[40px]" />
                 </div>
-            </nav>
-        </>
+                <Link to={"/project"}
+                    className="text-2xl py-3 rounded hover:bg-gray-400 hover:text-black flex justify-center text-gray-400 max-sm:px-2 max-sm:py-2">
+                    <BsHouse />
+                </Link>
+                <Link to={"/"}
+                    className="text-2xl py-3 rounded hover:bg-gray-400 hover:text-black flex justify-center text-gray-400 max-sm:px-2 max-sm:py-2">
+                    <AiOutlineTeam />
+                </Link>
+                <Link to={"/"}
+                    className="text-2xl py-3 rounded hover:bg-gray-400 hover:text-black flex justify-center text-gray-400 max-sm:px-2 max-sm:py-2">
+                    <AiOutlineFolderOpen />
+                </Link>
+                <Link to={"/blog/article"} title={"Blog"}
+                    className="text-2xl py-3 rounded hover:bg-gray-400 hover:text-black flex justify-center text-gray-400 max-sm:px-2 max-sm:py-2">
+                    <MdArticle />
+                </Link>
+            </div>
+
+            <div className="w-12 max-sm:flex max-sm:flex-row max-sm:w-fit">
+                <Link to={"/profile/me/blog"} title={"Profile"}
+                    className="text-2xl py-3 rounded hover:bg-gray-400 hover:text-black flex justify-center text-gray-400 max-sm:px-3 max-sm:py-3">
+                    <FaRegUserCircle />
+                </Link>
+                <div
+                    className="text-2xl py-3 mb-6 cursor-pointer rounded hover:bg-gray-400 text-red-600 flex justify-center max-sm:px-3 max-sm:mb-0"
+                    onClick={handleLogOut}>
+                    <AiOutlineLogout />
+                </div>
+            </div>
+        </nav>
     )
 }
 

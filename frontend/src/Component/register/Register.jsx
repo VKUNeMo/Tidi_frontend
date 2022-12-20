@@ -1,18 +1,22 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import {Link, useNavigate} from "react-router-dom";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {registerUser} from "../../Redux/APIRequest/apiAuthRequest";
-import "./register.css";
 
 function Register() {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const isLogin = useSelector(state => state.auth.login.success);
+
+    useEffect(()=>{
+        isLogin && navigate('/');
+    },[isLogin, navigate]);
     const [lastname, setLastname] = useState('');
     const [firstname, setFirstname] = useState('');
     const [userName, setUserName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [rePass, setRePass] = useState('');
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
 
 
     function handleSubmit(e) {
@@ -29,9 +33,8 @@ function Register() {
     }
 
     return (
-        <>
-            <div className='h-auto bg-white bg-opacity-30 shadow-2xl rounded-lg flex'>
-
+        <div className={"w-screen h-screen flex justify-center items-center"}>
+            <div className='h-auto bg-gray-500 py-6 shadow-2xl rounded-lg flex'>
                 <div className='h-full w-2/5 flex flex-col justify-around items-center min-w-max' id='register-form'>
                     <div className='py-4 text-center w-full h-1/5'>
                         <p className=' text-4xl font-bold tracking-wider mb-1 w-full'>Sign Up For Free</p>
@@ -93,7 +96,7 @@ function Register() {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 

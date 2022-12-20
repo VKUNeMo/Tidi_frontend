@@ -2,7 +2,8 @@ import {useEffect, useState} from 'react'
 import {Link, useNavigate} from "react-router-dom";
 import {loginUser} from "../../Redux/APIRequest/apiAuthRequest";
 import {useDispatch, useSelector} from "react-redux";
-import {loginStart} from "../../Redux/Slice/authSlice";
+import {loginStart, loginSuccess} from "../../Redux/Slice/authSlice";
+import {toast, ToastContainer} from "react-toastify";
 
 
 function Login() {
@@ -11,38 +12,42 @@ function Login() {
     const [username, setUserName] = useState("");
     const [password, setPassword] = useState("");
     const isLogin = useSelector(state => state.auth.login.success);
-    let msg = useSelector(state => state.auth.login?.msg);
+    // let msg = useSelector(state => state.auth.login?.msg);
 
     useEffect(() => {
         isLogin && navigate('/');
-        if (msg) {
-            setTimeout(() => {
-                dispatch(loginStart());
-            }, 5000);
-        }
-    }, [dispatch, msg, isLogin, navigate]);
+    }, [dispatch, isLogin, navigate]);
 
     function handleLogin(e) {
         e.preventDefault();
-        msg = "";
         const data = {
             username: username,
             password: password
         };
-        loginUser(data, dispatch, navigate);
+        loginUser(data, dispatch, navigate)
+            .then(user => {
+                dispatch(loginSuccess(user.data));
+            })
+            .catch(err => toast.error("🦄 "+err.response.data, {
+                autoClose: 4000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined
+            }));
     }
 
     return (
-
-        <>
+        <div className={"h-screen w-screen flex justify-center items-center"}>
             <div
-                className='h-4/5 w-1/4 bg-black bg-opacity-70  px-10 shadow-2xl rounded-lg flex justify-center flex-col '>
+                className='bg-black bg-opacity-70 px-10 shadow-2xl rounded-lg flex justify-center flex-col py-10'>
                 <div className='py-4 text-center w-full text-white  '>
                     <h2 className=' text-5xl font-bold tracking-wider mb-1 '>Welcome!</h2>
                     <p className='font-normal text-gray-400'> Wish you have a nice time</p>
                 </div>
                 <form className='flex flex-col w-full' id='form-login' onSubmit={handleLogin}>
-                    <span className='err text-red-700'>{msg}</span>
+                    {/*<span className='err text-red-700'>{msg}</span>*/}
                     <div className='pt-4'>
                         <label className='text-lg font-semibold text-white  '>Username</label> <br/>
                         <input type="text" value={username} onChange={e => setUserName(e.target.value)}
@@ -75,7 +80,7 @@ function Login() {
                     <Link to='/register' className='italic underline '>Register</Link>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 
