@@ -81,8 +81,8 @@ export const deleteStorage = async (dispatch, accessToken, idBlog, axiosJWT) => 
     return await axiosJWT.delete("/v1/user/blogs/storage/delete/"+idBlog);
 }
 
-export const getComment = async (idBlog, axiosJWT) => {
-    return await axiosJWT.get(`/v1/user/blogs/comment/${idBlog}`);
+export const getComment = async (idBlog) => {
+    return await instance.get(`/v1/user/blogs/comment/${idBlog}`);
 }
 
 export const addComment = async (idBlog, axiosJWT, data) => {

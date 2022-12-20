@@ -53,7 +53,7 @@ const Password = () => {
                 <h1 className={"float-left"}>Change password</h1>
                 <div className={"flex flex-col justify-center items-center w-full"}>
                     <div
-                        className={"flex flex-col mt-6 pt-12 w-full border-solid border-0 border-t-gray-400 border-t-2 py-4 px-12"}>
+                        className={"flex flex-col mt-6 pt-12 w-full border-solid border-0 border-t-gray-400 border-t-2 py-4 px-6"}>
                         <div className="mb-4">
                             <label htmlFor="old-password"
                                    className="block mb-2 text-sm font-medium"><h3>Old password</h3></label>

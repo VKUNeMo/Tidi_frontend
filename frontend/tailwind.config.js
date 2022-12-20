@@ -23,6 +23,16 @@ module.exports = {
         '1/8': '12.5%',
         '1/10': '10%',
         '1/12': '8%'
+      },
+      transitionProperty: {
+        'comment': 'transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1) 0s, opacity 0.6s cubic-bezier(0.23, 1, 0.32, 1) 0s;\n' +
+            '    transition-duration: 0.6s, 0.6s;\n' +
+            '    transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1), cubic-bezier(0.23, 1, 0.32, 1);\n' +
+            '    transition-delay: 0s, 0s;\n' +
+            '    transition-property: transform, opacity;'
+      },
+      translate: {
+        'comment': 'transform: translateX(-414px)'
       }
     },
   },

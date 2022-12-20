@@ -135,6 +135,4 @@ const config = (mode, holder='editorjs', data = initData) => {
     );
 }
 
-
-
 export default config;

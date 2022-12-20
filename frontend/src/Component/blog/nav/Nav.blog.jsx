@@ -8,7 +8,7 @@ import {MdArticle, MdFavoriteBorder, MdStorage} from "react-icons/md";
 function NavBlog() {
     return (
         <nav
-            className="h-min sticky top-0 bg-white flex flex-col z-50 w-60">
+            className="h-screen sticky top-0 bg-white flex flex-col z-50 w-60 max-lg:hidden">
             <div className={"w-full text-center border-solid border-0 border-b-2 border-gray-200 py-3 px-2 h-14"}>
                 <h1 className={""}>Blog</h1>
             </div>

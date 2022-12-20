@@ -10,7 +10,7 @@ import Storage from "./storage/Storage";
 
 function Blog() {
     return (
-        <div className={"ml-12 flex"}>
+        <div className={"ml-12 flex max-sm:ml-0"}>
             <div className={"sticky top-0"}>
                 <NavBlog/>
             </div>

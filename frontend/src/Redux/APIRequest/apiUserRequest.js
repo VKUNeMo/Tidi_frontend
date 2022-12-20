@@ -19,3 +19,19 @@ export const changeAvatar = async (data, dispatch, axiosJWT) => {
 export const changeInfo = async (data, axiosJWT, idUser) => {
     return await axiosJWT.post(`/v1/user/edit/${idUser}`, data);
 }
+
+export const getFollow = async (idUser) => {
+    return await instance.get(`/v1/user/follow/all/${idUser}`);
+}
+
+export const addFollow = async (idUser, axiosJWT) => {
+    return await axiosJWT.post(`/v1/user/follow/add/${idUser}`, {idFollow: idUser});
+}
+
+export const unfollow = async (idUser, axiosJWT) => {
+    return await axiosJWT.post(`/v1/user/follow/delete`, {idFollow: idUser});
+}
+
+export const checkFollow = async (idUser, axiosJWT) => {
+    return await axiosJWT.post(`/v1/user/follow/check`, {idFollow: idUser});
+}
