@@ -10,10 +10,10 @@ import ScheduleCompo from "./Schedule/ScheduleCompo";
 import Task from "./Task/Task";
 import Loading from "../../loading/Loading"
 import Todo from "./Todo/Todo";
-import { AiOutlineEdit } from "react-icons/ai"
 import BtnCreate from "../Create/BtnCreate";
 import BtnDelete from "../Delete/BtnDelete";
 import ListMember from "./Member/ListMember";
+import BtnEdit from "../Edit/BtnEdit";
 function DetailProject() {
     let { id } = useParams();
     const [key, setKey] = useState('');
@@ -69,10 +69,6 @@ function DetailProject() {
             </>
         )
     })
-    function handleDelete() {
-        console.log(data);
-    }
-
     return (
         <>
             {isLoading ? <Loading /> : (<div className="h-screen w-full  relative lg:w-4/5 z-10">
@@ -88,12 +84,10 @@ function DetailProject() {
                         {data.title}
                     </div>
                     <div className="h-full flex flex-row">
-                        <div className="p-4  bg-slate-200 rounded-xl flex mx-2 cursor-pointer">
-                            <span onClick={handleDelete} >
-                                <AiOutlineEdit></AiOutlineEdit>
-                            </span>
+                        <div className=" bg-slate-200 rounded-xl flex mx-2 cursor-pointer">
+                            <BtnEdit project={data}></BtnEdit>
                         </div>
-                        <div className="p-4  bg-red-500 rounded-xl flex mx-2 cursor-pointer">
+                        <div className=" bg-red-500 rounded-xl flex mx-2 cursor-pointer">
                             <BtnDelete project={data}></BtnDelete>
                         </div>
                     </div>

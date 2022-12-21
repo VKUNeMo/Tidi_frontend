@@ -22,9 +22,9 @@ const getAllMember = async (accessToken, dispatch, axiosJWT, idProject) => {
     }
 }
 
-const editRoleMember = async (dispatch, navigate, accessToken, axiosJWT, idTodo, data) => {
+const editRoleMember = async (dispatch, accessToken, axiosJWT, idProject, data) => {
     try {
-        await axiosJWT.post(`/v1/user/project/Todo/edit/${idTodo}`, data);
+        await axiosJWT.post(`/v1/user/manager/edit/${idProject}`, data);
         // navigate("/home/project");
     } catch (err) {
         console.log(err);

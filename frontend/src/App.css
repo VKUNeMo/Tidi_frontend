@@ -48,3 +48,8 @@ a {
 .box-shadow-custom {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
+
+.box-shadow-custom:hover {
+    box-shadow: none;
+    transform: translateY(3px);
+}

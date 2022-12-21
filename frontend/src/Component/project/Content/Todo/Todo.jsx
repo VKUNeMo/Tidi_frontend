@@ -17,13 +17,11 @@ function Todo() {
     const accessToken = token?.accessToken;
     const user = useSelector(state => state.auth.login.currentUser);
     const [data, setData] = useState([]);
-    const [AllTodo, setAllTodo] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     useEffect(() => {
         const axiosJWT = createAxios(user, accessToken, refreshToken, dispatch, getProjectSuccess);
         getAllOwnerTodo(accessToken, dispatch, axiosJWT, id).then(raw => {
             setData(raw.data);
-            setAllTodo(raw.data);
             setIsLoading(false);
         });
     }, [accessToken, dispatch, id, refreshToken, user]);

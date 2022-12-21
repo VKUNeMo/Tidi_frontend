@@ -45,16 +45,15 @@ const getDetailProject = async (dispatch, axiosJWT, idProject) => {
     }
 }
 
-const editProject = async (dispatch, navigate, accessToken, axiosJWT, idProject, data) => {
+export const editProject = async (dispatch, navigate, accessToken, axiosJWT, idProject, data) => {
     try {
-        await axiosJWT.post(`/v1/user/projects/edit/${idProject}`, data);
-        // navigate("/home/project");
+        await axiosJWT.post(`/v1/user/project/edit/${idProject}`, data);
     } catch (err) {
         console.log(err);
     }
 }
 
-const deleteProject = async (dispatch, navigate,accessToken, axiosJWT, idProject) => {
+const deleteProject = async (dispatch, navigate, accessToken, axiosJWT, idProject) => {
     try {
         await axiosJWT.delete(`/v1/user/project/delete/${idProject}`);
         // navigate("/home/project");
@@ -65,4 +64,4 @@ const deleteProject = async (dispatch, navigate,accessToken, axiosJWT, idProject
 
 
 
-export { addNewProject, getAllOwnerProject, getAllPublicProject, getDetailProject, editProject, deleteProject };
+export { addNewProject, getAllOwnerProject, getAllPublicProject, getDetailProject, deleteProject };

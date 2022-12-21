@@ -23,7 +23,6 @@ const EditBlog = () => {
     const axiosJWT = createAxios(user, accessToken, refreshToken, dispatch, getBlogSuccess);
     useEffect(() => {
         getDetailBlog(dispatch, axiosJWT, idBlog).then(raw => {
-            console.log(raw);
             const data = raw.data.data.blog.content;
             setData(raw.data.data.blog);
             setTitle(raw.data.data.blog.title);
@@ -45,8 +44,6 @@ const EditBlog = () => {
             console.log('Saving failed: ', error);
         });
     }
-    console.log(title);
-    console.log(statusBlog);
     return (
         <div>
             {/*<HeaderBlog type={"blog-detail"} theme={"edit-blog"} data={data}/>*/}
