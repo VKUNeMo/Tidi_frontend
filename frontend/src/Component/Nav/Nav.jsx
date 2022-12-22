@@ -42,7 +42,7 @@ function Nav() {
                 <div>
                     <img src={`${__dirname}icon.png`} alt="anh icon" className="w-12 h-12 object-cover cursor-pointer max-sm:w-[40px] max-sm:h-[40px]"/>
                 </div>
-                <Link to={"/"}
+                <Link to={"/project"}
                       className="text-2xl py-3 rounded hover:bg-gray-400 hover:text-black flex justify-center text-gray-400 max-sm:px-2 max-sm:py-2">
                     <BsHouse/>
                 </Link>
