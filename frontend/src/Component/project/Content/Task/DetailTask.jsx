@@ -6,6 +6,7 @@ import { getProjectSuccess } from "../../../../Redux/Slice/projectSlice";
 import { getDetailTask } from "../../../../Redux/APIRequest/apiTaskRequest";
 import Loading from "../../../loading/Loading"
 import moment from "moment"
+import BtnEdit from "./Edit/BtnEdit";
 function DetailTask({ idTask }) {
     const dispatch = useDispatch();
     const token = useSelector(state => state.auth.login.token);
@@ -15,12 +16,16 @@ function DetailTask({ idTask }) {
     const [data, setData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
-    useEffect(() => {
+    function getData() {
         const axiosJWT = createAxios(user, accessToken, refreshToken, dispatch, getProjectSuccess);
         getDetailTask(dispatch, axiosJWT, idTask).then(raw => {
             setData(raw.data);
             setIsLoading(false);
         });
+    }
+    useEffect(() => {
+        const a = setInterval(getData, 1000);
+        return () => { clearInterval(a) }
     }, [accessToken, dispatch, idTask, refreshToken, user]);
     const CURRENT_DAY = new Date();
     return (
@@ -44,7 +49,7 @@ function DetailTask({ idTask }) {
                 <div>
                     {data.description}
                 </div>
-
+                {idTask ? (<BtnEdit data={data}></BtnEdit>) : (<div></div>)}
             </div>)}
         </>
     )

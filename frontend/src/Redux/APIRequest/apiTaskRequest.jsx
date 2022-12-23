@@ -35,7 +35,6 @@ const getDetailTask = async (dispatch, axiosJWT, idTask) => {
 const editTask = async (dispatch, navigate, accessToken, axiosJWT, idTask, data) => {
     try {
         await axiosJWT.post(`/v1/user/project/task/edit/${idTask}`, data);
-        // navigate("/home/project");
     } catch (err) {
         console.log(err);
     }
