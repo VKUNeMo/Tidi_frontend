@@ -4,7 +4,7 @@ import { addNewTodo } from "../../../../../Redux/APIRequest/apiTodoRequest";
 import { createAxios } from "../../../../../createInstance";
 import { useDispatch, useSelector } from "react-redux";
 
-function FormCreate({ id, state, handleClick }) {
+function FormCreate({ id, state, handleClick, getData }) {
     const [title, setTitle] = useState('');
     const [des, setDes] = useState('');
     const dispatch = useDispatch();
@@ -18,6 +18,9 @@ function FormCreate({ id, state, handleClick }) {
         setTitle("");
         const data = { idProject: id, title: title, content: des, state: state };
         addNewTodo(accessToken, data, dispatch, id, axiosJWT)
+            .then(res => {
+                getData();
+            })
     }
     return (
         <>

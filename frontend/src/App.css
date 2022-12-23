@@ -53,3 +53,13 @@ a {
     box-shadow: none;
     transform: translateY(3px);
 }
+
+
+@keyframes ping {
+
+    75%,
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}

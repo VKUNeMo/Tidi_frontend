@@ -27,8 +27,11 @@ function Todo() {
         });
     }
     useEffect(() => {
-        const a = setInterval(getData, 1000);
-        return () => { clearInterval(a) }
+        const axiosJWT = createAxios(user, accessToken, refreshToken, dispatch, getProjectSuccess);
+        getAllOwnerTodo(accessToken, dispatch, axiosJWT, id).then(raw => {
+            setData(raw.data);
+            setIsLoading(false);
+        });
     }, [accessToken, dispatch, id, refreshToken, user]);
 
     function Kanban({ heading, state, taskList }) {
@@ -59,7 +62,7 @@ function Todo() {
                         </>
                     })}
                 </div>
-                <BtnCreate id={id} state={state}></BtnCreate>
+                <BtnCreate id={id} state={state} getData={getData}></BtnCreate>
 
 
             </div>

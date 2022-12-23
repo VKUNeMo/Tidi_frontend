@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 
 import { GrAdd } from "react-icons/gr";
 import FormCreate from "../Create/FormCreate";
-function BtnCreate({ id, state }) {
+function BtnCreate({ id, state, getData }) {
 
 
     function handleCreate() {
@@ -47,7 +47,7 @@ function BtnCreate({ id, state }) {
             {isComponentVisible &&
                 <div className="fixed top-0 left-0 bottom-0 right-0 z-40 bg-black bg-opacity-30" >
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50  bg-white w-1/3 h-auto" ref={ref}>
-                        <FormCreate id={id} state={state} handleClick={handleCreate}></FormCreate>
+                        <FormCreate id={id} state={state} handleClick={handleCreate} getData={getData}></FormCreate>
                     </div>
                 </div>
 
