@@ -15,6 +15,7 @@ function FormCreate({ id, state, handleClick }) {
     const axiosJWT = createAxios(user, accessToken, refreshToken, dispatch, getProjectSuccess);
     function handleAdd() {
         handleClick();
+        setTitle("");
         const data = { idProject: id, title: title, content: des, state: state };
         addNewTodo(accessToken, data, dispatch, id, axiosJWT)
     }

@@ -13,6 +13,8 @@ import BtnAdd from "./Add/BtnAdd";
 
 function ListMember() {
     let { id } = useParams();
+    const [userEdit, setUserEdit] = useState({});
+    const [roleEdit, setRoleEdit] = useState(0);
     const dispatch = useDispatch();
     const token = useSelector(state => state.auth.login.token);
     const refreshToken = token?.refreshToken;
@@ -27,9 +29,7 @@ function ListMember() {
             setData(raw.data);
             setIsLoading(false);
         });
-    }, [accessToken, dispatch, id, refreshToken, user]);
-    console.log(data);
-
+    }, [dispatch, user]);
     const {
         ref,
         isComponentVisible,
@@ -56,7 +56,10 @@ function ListMember() {
 
         return { ref, isComponentVisible, setIsComponentVisible };
     }
-    function handleVisibleEditRole() {
+    function handleVisibleEditRole(e, userEdit, role) {
+        e.preventDefault();
+        userEdit._id === user._id ? setRoleEdit(role) : setRoleEdit(1);
+        setUserEdit(userEdit);
         setIsComponentVisible(pre => !pre)
     }
     return (
@@ -66,28 +69,27 @@ function ListMember() {
                     {data.map(function (member) {
                         return (
                             <>
-                                <div key={member.id} className=" py-4   cursor-pointer box-shadow-custom" onClick={handleVisibleEditRole}>
-                                    <div className="inline-block mx-2" >
+                                <div key={member.id} className=" py-4   cursor-pointer box-shadow-custom" onClick={e => handleVisibleEditRole(e, member.idUser, member.role)}>
+                                    <div className="inline-block mx-2"  >
                                         <AiOutlineUser></AiOutlineUser>
                                     </div>
-                                    <p className="inline-block"  >{`${member.idUser.firstName} ${member.idUser.lastName}`}</p>
+                                    <p className="inline-block">{`${member.idUser.firstName} ${member.idUser.lastName}`}</p>
                                     <div className="pl-8 py-2 text-gray-400">
                                         {member.role === 0 ?
                                             <div className="">Manager</div> :
                                             <div>Staff</div>}
                                     </div>
                                 </div>
-                                {isComponentVisible && (
-                                    <div className="fixed top-0 left-0 bottom-0 right-0 z-40 bg-black bg-opacity-30" key={member.idUser._id} >
-                                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50  bg-white w-1/3 h-auto" ref={ref}>
-                                            <EditRole userEdit={member.idUser} roleEdit={member.role} handleVisibleEditRole={handleVisibleEditRole} />
-                                        </div>
-                                    </div>)
-                                }
                             </>
                         )
-
                     })}
+                    {!roleEdit && isComponentVisible && (
+                        <div className="fixed top-0 left-0 bottom-0 right-0 z-40 bg-black bg-opacity-30" key={userEdit._id} >
+                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50  bg-white w-1/3 h-auto" ref={ref}>
+                                <EditRole userEdit={userEdit} roleEdit={roleEdit} handleVisibleEditRole={handleVisibleEditRole} />
+                            </div>
+                        </div>)
+                    }
                     <div>
                         <BtnAdd></BtnAdd>
                     </div>

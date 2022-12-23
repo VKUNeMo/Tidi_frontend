@@ -3,7 +3,7 @@ import { getProjectSuccess } from "../../../../../Redux/Slice/projectSlice";
 import { createAxios } from "../../../../../createInstance";
 import { useDispatch, useSelector } from "react-redux";
 import { addNewMember } from "../../../../../Redux/APIRequest/apiMemberRequest";
-
+import { toast } from "react-toastify";
 function FormAdd({ id, handleSetVisible }) {
     const [idUser, setidUser] = useState('');
     const dispatch = useDispatch();
@@ -20,6 +20,11 @@ function FormAdd({ id, handleSetVisible }) {
             role: 1,
         }
         addNewMember(accessToken, data, dispatch, id, axiosJWT)
+            .then(async rs => {
+                await toast.success("Thêm nhân viên thành công", { autoClose: 1000 });
+            })
+            .catch(err => toast.error("Không thành công", { position: "top-right", autoClose: 1500 }));
+
     }
     return (
         <>

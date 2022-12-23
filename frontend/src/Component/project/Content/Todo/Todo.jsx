@@ -18,12 +18,17 @@ function Todo() {
     const user = useSelector(state => state.auth.login.currentUser);
     const [data, setData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    useEffect(() => {
+
+    function getData() {
         const axiosJWT = createAxios(user, accessToken, refreshToken, dispatch, getProjectSuccess);
         getAllOwnerTodo(accessToken, dispatch, axiosJWT, id).then(raw => {
             setData(raw.data);
             setIsLoading(false);
         });
+    }
+    useEffect(() => {
+        const a = setInterval(getData, 1000);
+        return () => { clearInterval(a) }
     }, [accessToken, dispatch, id, refreshToken, user]);
 
     function Kanban({ heading, state, taskList }) {

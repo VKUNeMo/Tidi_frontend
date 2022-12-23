@@ -25,12 +25,12 @@ function DetailTask({ idTask }) {
     const CURRENT_DAY = new Date();
     return (
         <>
-            {isLoading ? <Loading /> : (<div className="w-full p-4">
+            {(<div className="w-full p-4">
                 <div className="flex flex-row justify-between mb-4">
                     <div className="text-2xl font-semibold">
                         {data.title}
                     </div>
-                    {moment(CURRENT_DAY).isBefore(data.dayEnd) ?
+                    {idTask ? (moment(CURRENT_DAY).isBefore(data.dayEnd) ?
                         (<div className="text-gray-400">
                             <AiOutlineSchedule></AiOutlineSchedule>
                             {moment(data.dayStart).format('DD/MM/YYYY')} -
@@ -38,7 +38,7 @@ function DetailTask({ idTask }) {
                         </div>) :
                         (<div>
                             <span className="text-gray-400 uppercase">Out of date</span>
-                        </div>)}
+                        </div>)) : (<div></div>)}
 
                 </div>
                 <div>

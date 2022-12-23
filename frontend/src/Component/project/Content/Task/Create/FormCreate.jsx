@@ -4,7 +4,7 @@ import { addNewTask } from "../../../../../Redux/APIRequest/apiTaskRequest";
 import { createAxios } from "../../../../../createInstance";
 import { useDispatch, useSelector } from "react-redux";
 
-function FormCreate({ id, state, handleClick }) {
+function FormCreate({ id, state,  handleClick }) {
     const [title, setTitle] = useState('');
     const [des, setDes] = useState('');
     const [dayStart, setDayStart] = useState({ dayStart: new Date() });
@@ -21,6 +21,8 @@ function FormCreate({ id, state, handleClick }) {
         console.log(dayStart);
         const data = { idProject: id, title: title, description: des, dayStart: dayStart, dayEnd: dayEnd, state: state };
         addNewTask(accessToken, data, dispatch, id, axiosJWT)
+        
+
     }
     return (
         <>

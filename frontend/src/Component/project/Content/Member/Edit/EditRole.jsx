@@ -6,12 +6,16 @@ import {
     useParams
 } from "react-router-dom";
 import { editRoleMember } from "../../../../../Redux/APIRequest/apiMemberRequest";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 function EditRole({ userEdit, roleEdit, handleVisibleEditRole }) {
+    console.log(userEdit);
     const [firstName, setfirstName] = useState(userEdit.firstName);
     const [lastName, setlastName] = useState(userEdit.lastName);
     const [role, setRole] = useState(roleEdit);
     let { id } = useParams();
+    const navigate = useNavigate()
     const dispatch = useDispatch();
     const token = useSelector(state => state.auth.login.token);
     const refreshToken = token?.refreshToken;
@@ -19,21 +23,23 @@ function EditRole({ userEdit, roleEdit, handleVisibleEditRole }) {
     const user = useSelector(state => state.auth.login.currentUser);
     const axiosJWT = createAxios(user, accessToken, refreshToken, dispatch, getProjectSuccess);
 
-    function handleEdit() {
+    function handleEdit(e) {
+        e.preventDefault();
         handleVisibleEditRole();
         const data = {
             idMember: userEdit._id,
             idProject: id,
             role: role,
         }
-        console.log(data)
-        editRoleMember(dispatch, accessToken, axiosJWT, id, data);
+        editRoleMember(dispatch, accessToken, axiosJWT, id, data).then(async rs => {
+            await toast.success("Thành đổi thành công", { autoClose: 1000 });
+        })
+            .catch(err => toast.error("Thay đổi thông tin không thành công", { position: "top-right", autoClose: 1500 }));
     }
-    console.log(userEdit)
     return (
         <>
             <div className="p-4 w-full h-auto">
-                <h1 className="text-center text-xl font-semibold">Edit Role for Member</h1>
+                <h1 className="text-center text-xl font-semibold" >Edit Role for Member</h1>
                 <form className="flex flex-col justify-center w-auto h-auto ">
                     <div className="my-2 flex flex-row">
                         <div className="">

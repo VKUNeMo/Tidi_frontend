@@ -6,7 +6,6 @@ function BtnAdd({ id }) {
 
 
     function handleSetVisible() {
-        console.log(1);
         setIsComponentVisible(pre => !pre);
     }
 
