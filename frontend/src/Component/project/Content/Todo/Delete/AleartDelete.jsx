@@ -4,7 +4,7 @@ import { deleteTodo } from "../../../../../Redux/APIRequest/apiTodoRequest";
 import { createAxios } from "../../../../../createInstance";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-function AleartDelete({ idTodo, handleClick }) {
+function AleartDelete({ idTodo, handleClick, getData }) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const token = useSelector(state => state.auth.login.token);
@@ -15,6 +15,9 @@ function AleartDelete({ idTodo, handleClick }) {
     function handleDelete() {
         handleClick();
         deleteTodo(dispatch, navigate, accessToken, axiosJWT, idTodo)
+            .then(res => {
+                getData();
+            })
     }
     return (
         <>

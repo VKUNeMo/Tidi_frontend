@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 
 import { AiOutlineDelete } from "react-icons/ai";
 import AleartDelete from "./AleartDelete";
-function BtnDelete({ idTodo }) {
+function BtnDelete({ idTodo,getData }) {
     function handleCreate() {
         setIsComponentVisible(pre => !pre);
     }
@@ -42,7 +42,7 @@ function BtnDelete({ idTodo }) {
             {isComponentVisible &&
                 <div className="fixed top-0 left-0 bottom-0 right-0 z-40 bg-black bg-opacity-30">
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50  bg-white w-1/3 h-1/4" ref={ref}>
-                        <AleartDelete idTodo={idTodo} handleClick={handleCreate} ></AleartDelete>
+                        <AleartDelete idTodo={idTodo} handleClick={handleCreate} getData={getData}></AleartDelete>
                     </div>
                 </div>
 

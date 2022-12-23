@@ -49,7 +49,7 @@ function Todo() {
                                         {task.title}
                                     </div>
                                     <div className="my-auto">
-                                        <BtnDelete idTodo={task._id}></BtnDelete>
+                                        <BtnDelete idTodo={task._id} getData={getData}></BtnDelete>
                                     </div>
                                 </div>
                                 <div className=" text-limit">
