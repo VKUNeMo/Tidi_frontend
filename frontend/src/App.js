@@ -17,7 +17,7 @@ import ViewOther from "./Component/profile/viewProfile/ViewOther";
 import { ToastContainer } from "react-toastify";
 import DetailProject from "./Component/project/Content/DetailProject";
 import Project from "./Component/project/Project";
-
+import GetStarted from "./Component/GetStarted";
 
 function App() {
     const isLogin = useSelector(state => state.auth.login.success);
@@ -35,7 +35,9 @@ function App() {
                 {isLogin && <Nav />}
                 <div>
                     <Routes>
-                        <Route index element={<Home />} />
+                        <Route path="/" element={<GetStarted />} />
+
+                        {/* <Route index element={<Home />} /> */}
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register />} />
                         <Route path="/profile" element={<ProtectedRoute user={isLogin}><Profile /></ProtectedRoute>} />
