@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useRef} from "react";
 import moment from "moment";
 import {Link, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
@@ -70,7 +70,7 @@ function HeaderBlog(props) {
                 setIsLoading(false);
             });
         }
-    }, [blog]);
+    }, [blog, allComment]);
 
     const handleStorage = () => {
         const axiosJWT = createAxios(user, accessToken, refreshToken, dispatch, storageBlogSuccess);
@@ -92,7 +92,7 @@ function HeaderBlog(props) {
     const handleSendComment = (e) => {
         e.preventDefault();
         if (comment) {
-            const axiosJWT = createAxios(user, accessToken, refreshToken, dispatch, addCommentSuccess);
+            const axiosJWT = createAxios(user, accessToken, refreshToken, dispatch, getBlogSuccess);
             addComment(blog._id, axiosJWT, {idUser: user._id, content: comment}).then(r => {
                 toast.success("Post comment successfully", {autoClose: 1000, position: 'bottom-right'});
             });
@@ -100,7 +100,7 @@ function HeaderBlog(props) {
     }
 
     const handleDeleteComment = (idComment) => {
-        const axiosJWT = createAxios(user, accessToken, refreshToken, dispatch, loginSuccess);
+        const axiosJWT = createAxios(user, accessToken, refreshToken, dispatch, getBlogSuccess);
         deleteComment(idComment, axiosJWT).then(r => toast.success("Comment removed", {
             autoClose: 1000,
             position: 'bottom-right'

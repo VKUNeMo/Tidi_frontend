@@ -14,6 +14,7 @@ import ViewPublic from "./Component/blog/ViewPublic";
 import EditBlog from "./Component/blog/edit/EditBlog";
 import ViewProfile from "./Component/profile/viewProfile/ViewProfile";
 import ViewOther from "./Component/profile/viewProfile/ViewOther";
+import Project from "./Component/project/Project";
 import {ToastContainer} from "react-toastify";
 
 
@@ -57,6 +58,12 @@ function App() {
                             {/*    /!*<Route path={"blog"} element={<ViewProfile/>}/>*!/*/}
                             {/*</Route>*/}
                             {/*<Route path={":idUser"} element={<ViewOther/>}/>*/}
+                        </Route>
+                        <Route path={"project/*"} element={
+                            <ProtectedRoute user={isLogin}>
+                                <Project/>
+                            </ProtectedRoute>
+                        }>
                         </Route>
 
                     </Routes>
