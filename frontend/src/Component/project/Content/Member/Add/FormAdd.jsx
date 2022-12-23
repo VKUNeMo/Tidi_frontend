@@ -20,10 +20,7 @@ function FormAdd({ id, handleSetVisible }) {
             role: 1,
         }
         addNewMember(accessToken, data, dispatch, id, axiosJWT)
-            .then(async rs => {
-                await toast.success("Thêm nhân viên thành công", { autoClose: 1000 });
-            })
-            .catch(err => toast.error("Không thành công", { position: "top-right", autoClose: 1500 }));
+
 
     }
     return (

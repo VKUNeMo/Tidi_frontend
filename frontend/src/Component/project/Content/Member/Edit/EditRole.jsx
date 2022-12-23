@@ -6,10 +6,9 @@ import {
     useParams
 } from "react-router-dom";
 import { editRoleMember } from "../../../../../Redux/APIRequest/apiMemberRequest";
-import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
-function EditRole({ userEdit, roleEdit, handleVisibleEditRole }) {
+function EditRole({ userEdit, roleEdit, handleVisibleEditRole, handle }) {
     console.log(userEdit);
     const [firstName, setfirstName] = useState(userEdit.firstName);
     const [lastName, setlastName] = useState(userEdit.lastName);
@@ -25,16 +24,13 @@ function EditRole({ userEdit, roleEdit, handleVisibleEditRole }) {
 
     function handleEdit(e) {
         e.preventDefault();
-        handleVisibleEditRole();
+        handle();
         const data = {
             idMember: userEdit._id,
             idProject: id,
             role: role,
         }
-        editRoleMember(dispatch, accessToken, axiosJWT, id, data).then(async rs => {
-            await toast.success("Thành đổi thành công", { autoClose: 1000 });
-        })
-            .catch(err => toast.error("Thay đổi thông tin không thành công", { position: "top-right", autoClose: 1500 }));
+        editRoleMember(dispatch, accessToken, axiosJWT, id, data)
     }
     return (
         <>
@@ -61,7 +57,7 @@ function EditRole({ userEdit, roleEdit, handleVisibleEditRole }) {
                     </div>
                     <div className=" flex justify-end">
                         <p onClick={handleEdit} className="mx-2 p-4 w-20 cursor-pointer text-center  rounded-lg bg-blue-300 border border-blue-300">Save</p>
-                        <p onClick={handleVisibleEditRole} className="mx-2 p-4 w-20 cursor-pointer text-center rounded-lg border border-blue-300">Close</p>
+                        <p onClick={handle} className="mx-2 p-4 w-20 cursor-pointer text-center rounded-lg border border-blue-300">Close</p>
                     </div>
                 </form>
             </div>

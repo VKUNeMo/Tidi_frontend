@@ -56,11 +56,17 @@ function ListMember() {
 
         return { ref, isComponentVisible, setIsComponentVisible };
     }
+    function handle() {
+        setIsComponentVisible(pre => !pre)
+    }
     function handleVisibleEditRole(e, userEdit, role) {
         e.preventDefault();
-        userEdit._id === user._id ? setRoleEdit(role) : setRoleEdit(1);
+        console.log(userEdit);
+        console.log(role);
+        userEdit._id === user._id ? setRoleEdit(role) : setRoleEdit(0);
         setUserEdit(userEdit);
         setIsComponentVisible(pre => !pre)
+
     }
     return (
         <>
@@ -86,7 +92,7 @@ function ListMember() {
                     {!roleEdit && isComponentVisible && (
                         <div className="fixed top-0 left-0 bottom-0 right-0 z-40 bg-black bg-opacity-30" key={userEdit._id} >
                             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50  bg-white w-1/3 h-auto" ref={ref}>
-                                <EditRole userEdit={userEdit} roleEdit={roleEdit} handleVisibleEditRole={handleVisibleEditRole} />
+                                <EditRole userEdit={userEdit} roleEdit={roleEdit} handleVisibleEditRole={handleVisibleEditRole} handle={handle} />
                             </div>
                         </div>)
                     }
